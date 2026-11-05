@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Asmaa Tarek | Butterfly Effect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Reem+Kufi:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#2b2046; --ink-2:#41336a; --muted:#5d5378;
+  --paper:#faf8fc; --paper-2:#efe9f6; --white:#fff;
+  --gold:#d8ae45; --gold-2:#e6c05f; --gold-soft:#f7efd9; --gold-text:#8a6716;
+  --purple:#5f4b8d; --purple-soft:#e7e0f2;
+  --line:rgba(43,32,70,.14); --line-inv:rgba(250,248,252,.2);
+  --r:20px;
+  --display:'Bricolage Grotesque','Reem Kufi',system-ui,sans-serif;
+  --body:'IBM Plex Sans','IBM Plex Sans Arabic',system-ui,sans-serif;
+}
+html[lang="ar"]{--display:'Reem Kufi','Bricolage Grotesque',system-ui,sans-serif;--body:'IBM Plex Sans Arabic','IBM Plex Sans',system-ui,sans-serif}
+html[lang="ar"] .en{display:none!important}
+html[lang="en"] .ar{display:none!important}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.7}
+html[lang="ar"] body{line-height:1.85}
+img,svg{display:block}
+a{color:inherit}
+bdi,.ltr{direction:ltr;unicode-bidi:isolate}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+h1,h2,h3{font-family:var(--display);line-height:1.2;margin:0;text-wrap:balance}
+h2{font-size:clamp(30px,4.4vw,46px);font-weight:700;letter-spacing:-.4px}
+html[lang="ar"] h2{letter-spacing:0}
+p{margin:0}
+section{padding:96px 0}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--purple);margin-bottom:12px;letter-spacing:.02em}
+.kicker::before{content:"";width:10px;height:10px;border-radius:50%;border:2px solid var(--gold)}
+.lead{color:var(--muted);font-size:18px;max-width:640px}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+.sec-head .lead{max-width:460px}
+.ph{color:var(--muted);font-size:15px;font-style:italic}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 24px;border-radius:999px;font:600 16px var(--body);text-decoration:none;border:2px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;transition:transform .2s,background .2s,color .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn svg{flex:none}
+.btn-gold{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.btn-gold:hover{background:var(--gold-2);border-color:var(--gold-2)}
+.btn-ink{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.btn-ink:hover{background:var(--ink-2)}
+.btn-line:hover{background:var(--ink);color:var(--paper)}
+.btn-inv{border-color:var(--paper);color:var(--paper)}
+.btn-inv:hover{background:var(--paper);color:var(--ink)}
+
+/* header */
+header{position:sticky;top:0;z-index:50;background:rgba(250,248,252,.93);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:14px;height:72px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand img{height:36px;width:auto}
+.brand b{display:block;font-family:var(--display);font-size:18px;line-height:1.1}
+.brand small{display:block;font-size:13px;color:var(--purple);line-height:1.3}
+.nav-links{display:flex;gap:2px;list-style:none;margin:0;padding:0;align-items:center}
+.nav-links a{display:block;padding:8px 11px;border-radius:999px;text-decoration:none;font-size:15px;font-weight:500;color:var(--muted)}
+.nav-links a:hover{color:var(--ink);background:var(--paper-2)}
+.lang-btn{font:600 14px var(--body);min-height:40px;padding:0 16px;border-radius:999px;border:1.5px solid var(--purple);background:transparent;color:var(--purple);cursor:pointer;margin-inline-start:6px}
+.lang-btn:hover{background:var(--purple);color:#fff}
+.nav-links .btn{min-height:42px;padding:0 18px;margin-inline-start:6px;color:var(--ink)}
+.menu-btn{display:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--white);cursor:pointer;align-items:center;justify-content:center}
+
+/* hero */
+.hero{padding:60px 0 72px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+.eyebrow{font-size:14px;font-weight:600;color:var(--purple);margin-bottom:16px}
+.hero h1{font-size:clamp(42px,6.6vw,78px);font-weight:700;letter-spacing:-1px}
+html[lang="ar"] .hero h1{letter-spacing:0;line-height:1.3}
+.hero h1 em{font-style:normal;color:var(--purple);position:relative}
+.hero h1 em::after{content:"";position:absolute;inset-inline:0;bottom:.04em;height:.14em;background:var(--gold);opacity:.55;z-index:-1;border-radius:4px}
+.hero .name{margin-top:18px;font-family:var(--display);font-size:clamp(19px,2.2vw,24px);font-weight:600}
+.hero .name .hl{color:var(--purple)}
+.hero .lede{margin-top:14px;max-width:36em;font-size:18px;color:var(--ink-2)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.ripple{position:relative;width:100%;max-width:420px;justify-self:center;aspect-ratio:1}
+.ripple svg{position:absolute;inset:0;width:100%;height:100%}
+.ripple img{position:absolute;top:50%;left:50%;width:58%;transform:translate(-50%,-50%)}
+.ripple circle.ring{fill:none;stroke:var(--purple);stroke-width:1.5}
+.ripple .pulse{transform-origin:200px 200px;animation:pulse 6s ease-out infinite}
+.ripple .pulse.p2{animation-delay:2s}.ripple .pulse.p3{animation-delay:4s}
+@keyframes pulse{0%{transform:scale(.35);opacity:.9}100%{transform:scale(1);opacity:0}}
+@media (prefers-reduced-motion:reduce){.ripple .pulse{animation:none;opacity:.25;transform:scale(.8)}html{scroll-behavior:auto}}
+
+/* stats */
+.stats{background:var(--ink);color:var(--paper);padding:48px 0}
+.stats ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(7,1fr);gap:24px 18px}
+.stats li{border-top:1px solid var(--line-inv);padding-top:14px;min-width:0}
+.stats b{display:block;direction:ltr;text-align:start;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:clamp(26px,2.6vw,36px);line-height:1.1;color:var(--gold);font-weight:700}
+html[lang="ar"] .stats b{text-align:right}
+.stats span{font-size:14px;opacity:.9;display:block;margin-top:4px}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+.photo{position:relative}
+.photo img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:24px}
+.photo .badge{position:absolute;inset-inline-start:-14px;bottom:24px;background:var(--white);border-radius:16px;padding:12px 16px;box-shadow:0 14px 30px -14px rgba(43,32,70,.35);display:flex;gap:10px;align-items:center;max-width:80%}
+.photo .badge img{width:40px;height:auto;aspect-ratio:auto;border-radius:0}
+.photo .badge b{font-family:var(--display);font-size:15px;line-height:1.3}
+.about .title{font-size:15px;font-weight:600;color:var(--purple);margin:14px 0 18px}
+.about p.lead{margin-bottom:14px;max-width:none}
+.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:10px 0 0;padding:0}
+.chips li{background:var(--white);border:1px solid var(--line);padding:5px 15px;border-radius:999px;font-size:15px}
+.serve h3{font-size:18px;margin-top:24px}
+
+/* vision mission */
+.vm{background:linear-gradient(140deg,var(--ink),var(--ink-2));color:#fff}
+.vm .kicker{color:#d9cdee}
+.vm-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:30px}
+.vm-card{background:rgba(255,255,255,.06);border:1px solid var(--line-inv);border-radius:22px;padding:34px;position:relative;overflow:hidden}
+.vm-card .label{display:inline-block;font-size:13px;font-weight:700;background:var(--gold);color:var(--ink);padding:2px 14px;border-radius:999px;margin-bottom:14px}
+.vm-card p{font-size:19px;line-height:1.8;color:#f2eefa}
+.vm-card img{position:absolute;inset-inline-end:-30px;bottom:-30px;width:150px;opacity:.08}
+
+/* value chain */
+.chain{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:12px;align-items:stretch}
+.val{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:28px;display:flex;flex-direction:column;gap:12px}
+.val .num{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:20px;color:var(--ink);background:var(--gold)}
+.val h3{font-size:22px}
+.val p{color:var(--muted);font-size:16px}
+.val ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.val li{font-size:14px;background:var(--paper-2);border-radius:999px;padding:2px 12px}
+.val blockquote{margin:auto 0 0;padding:14px 16px;background:var(--purple-soft);border-radius:12px;font-size:15px;font-weight:500;color:var(--ink-2);border-inline-start:3px solid var(--gold)}
+.arrow{display:flex;align-items:center;justify-content:center;color:var(--gold)}
+html[lang="ar"] .arrow svg{transform:scaleX(-1)}
+.chain-line{margin-top:28px;text-align:center;font-family:var(--display);font-size:clamp(18px,2vw,22px)}
+.vfeat{display:grid;grid-template-columns:1.25fr .75fr;gap:32px;align-items:center;background:var(--white);border:1px solid var(--line);border-radius:24px;padding:22px;margin-top:40px}
+.vfeat video{width:100%;aspect-ratio:16/9;border-radius:16px;background:#000;object-fit:cover}
+.vtag{display:inline-block;font-size:13px;font-weight:700;background:var(--gold-soft);color:var(--gold-text);padding:2px 12px;border-radius:999px;margin-bottom:10px}
+.vfeat h3{font-size:24px;margin-bottom:8px}
+.vfeat p{color:var(--muted)}
+
+/* services */
+.services{background:var(--paper-2)}
+.aud{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.panel{border:1px solid var(--line);border-radius:22px;padding:30px;background:var(--white)}
+.panel.org{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.panel .ptag{display:inline-block;font-size:13px;font-weight:700;padding:2px 12px;border-radius:999px;background:var(--gold);color:var(--ink);margin-bottom:12px}
+.panel h3{font-size:28px;margin-bottom:6px}
+.panel p.d{color:var(--muted);margin-bottom:18px}
+.panel.org p.d{color:#d9cdee}
+.panel ul{list-style:none;margin:0 0 22px;padding:0;display:grid;gap:16px}
+.panel li{padding-inline-start:26px;position:relative}
+.panel li::before{content:"";position:absolute;inset-inline-start:0;top:.55em;width:11px;height:11px;border-radius:50%;border:2.5px solid var(--gold)}
+.panel li strong{display:block;font-weight:600}
+.panel li > span{font-size:15px;color:var(--muted)}
+.panel.org li > span{color:#cfc4e4}
+.panel.org .btn{border-color:var(--gold);background:var(--gold);color:var(--ink)}
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:48px}
+.principles div{border-top:3px solid var(--gold);padding-top:16px}
+.principles h3{font-size:20px;margin-bottom:8px}
+.principles p{font-size:15px;color:var(--muted)}
+
+/* usp */
+.usp{padding:72px 0}
+.usp-box{background:var(--purple);color:#fff;border-radius:28px;padding:44px 48px;display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center}
+.usp-box img{width:84px}
+.usp-box p{font-family:var(--display);font-size:clamp(20px,2.6vw,28px);line-height:1.6}
+
+/* projects */
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:var(--white);font:500 15px var(--body);color:var(--muted);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.project{background:var(--white);border:1px solid var(--line);border-radius:24px;padding:28px;margin-bottom:24px}
+.project[hidden]{display:none}
+.p-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:12px}
+.p-org{font-size:14px;color:var(--purple);font-weight:600}
+.project h3{font-size:clamp(24px,3vw,32px)}
+.p-sub{color:var(--muted);font-size:15px}
+.p-role{background:var(--ink);color:#fff;border-radius:999px;padding:6px 16px;font-size:14px;font-weight:600}
+.p-desc{margin:0 0 10px;max-width:880px}
+.p-figs{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 20px;list-style:none;padding:0}
+.p-figs li{background:var(--gold-soft);border-radius:14px;padding:8px 14px;font-size:14px;color:var(--ink)}
+.p-figs b{font-family:'Bricolage Grotesque',sans-serif;font-size:20px;color:var(--gold-text);margin-inline-end:4px}
+.p-media{display:grid;grid-template-columns:.9fr 1.1fr;gap:14px;align-items:stretch}
+.p-video{position:relative;border-radius:16px;overflow:hidden;background:#000}
+.p-video video{width:100%;height:100%;object-fit:contain;display:block}
+.p-video .cap{position:absolute;top:12px;inset-inline-start:12px;background:rgba(255,255,255,.92);color:var(--purple);font-size:13px;font-weight:600;padding:2px 12px;border-radius:999px;pointer-events:none}
+.gallery{display:grid;gap:10px}
+.g5{grid-template-columns:repeat(3,1fr);grid-auto-rows:150px}
+.g5 .big{grid-column:span 2;grid-row:span 2}
+.g5 .gi:last-child{grid-column:span 2}
+.g4 .gi:last-child{grid-column:span 3}
+.g3{grid-template-columns:2fr 1fr 1.4fr;grid-auto-rows:320px}
+.gi{padding:0;border:0;background:var(--paper-2);border-radius:14px;overflow:hidden;cursor:zoom-in;width:100%;height:100%}
+.gi img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
+.gi:hover img{transform:scale(1.04)}
+.gi.contain img{object-fit:contain;background:#fff}
+.more-work{margin-top:56px}
+.more-work h3.mw{font-size:26px;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:8px;transition:border-color .2s,transform .2s}
+.card:hover{border-color:var(--gold);transform:translateY(-3px)}
+.card .tag{font-size:13px;font-weight:600;color:var(--purple)}
+.card h4{font-family:var(--display);font-size:19px;margin:0;line-height:1.3}
+.card .who{font-size:14px;color:var(--muted);font-weight:500}
+.card p.t{font-size:15px}
+.card .fig{margin-top:auto;padding-top:12px;border-top:1px solid var(--line);font-size:14px;font-weight:600}
+
+/* consult */
+.consult{background:var(--paper-2)}
+.uvp{background:var(--white);border-inline-start:4px solid var(--gold);border-radius:14px;padding:20px 24px;margin-bottom:28px}
+.uvp p{font-family:var(--display);font-size:clamp(18px,2vw,21px);color:var(--ink-2)}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.plan{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:30px;display:flex;flex-direction:column;gap:14px}
+.plan.featured{background:var(--ink);color:#fff;border-color:var(--ink)}
+.plan.featured p,.plan.featured li{color:#d9cdee}
+.plan .badge{align-self:flex-start;background:var(--gold);color:var(--ink);font-size:13px;font-weight:700;padding:2px 12px;border-radius:999px}
+.plan h3{font-size:22px}
+.plan .for{font-size:14px;color:var(--purple);font-weight:600;margin-top:-8px}
+.plan.featured .for{color:var(--gold)}
+.plan .price{font-family:var(--display);font-size:26px;font-weight:700}
+.plan .price small{font-family:var(--body);font-size:14px;font-weight:400;opacity:.8}
+.plan p{color:var(--muted);font-size:15px}
+.plan ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:15px;color:var(--muted)}
+.plan li{display:flex;gap:8px;align-items:flex-start}
+.plan li svg{flex:none;margin-top:6px;color:var(--gold)}
+.plan-actions{margin-top:auto;display:flex;flex-direction:column;gap:6px}
+.plan-actions .btn{width:100%}
+.plan.featured .btn-line{border-color:var(--gold);background:var(--gold);color:var(--ink)}
+.ask{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;font-size:15px;font-weight:600;color:var(--purple);text-decoration:none;border-radius:999px}
+.ask:hover{background:var(--paper-2)}
+.plan.featured .ask{color:#fff}
+.plan.featured .ask:hover{background:rgba(255,255,255,.1)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px;counter-reset:s;padding:0;list-style:none}
+.steps li{counter-increment:s;background:var(--white);border-radius:14px;padding:18px;font-size:15px;border:1px solid var(--line)}
+.steps li::before{content:counter(s);font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:28px;color:var(--purple);display:block;line-height:1.2}
+
+/* creds */
+.creds{background:var(--ink);color:var(--paper)}
+.creds .kicker{color:#d9cdee}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;margin-top:36px}
+.cols h3{font-size:20px;margin-bottom:12px;color:var(--gold)}
+.cols ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:15px}
+.cols li{padding-bottom:8px;border-bottom:1px solid var(--line-inv)}
+
+/* feedback */
+.fb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.review{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:14px}
+.review.feat{grid-column:span 2;background:var(--purple);color:#fff;border:0}
+.review.feat blockquote{font-family:var(--display);font-size:clamp(20px,2.4vw,26px);line-height:1.6}
+.review.feat .who div > span{color:#e5dcf5}
+.review.cert{grid-column:1/-1;background:var(--gold-soft);border-color:transparent}
+.review.short blockquote{font-family:var(--display);font-size:21px}
+.qm{font-family:'Bricolage Grotesque',sans-serif;font-size:64px;line-height:.5;color:var(--gold);height:28px}
+.review blockquote{margin:0;font-size:16px}
+.who{display:flex;align-items:center;gap:12px;margin-top:auto}
+.avatar{width:46px;height:46px;border-radius:50%;background:var(--paper-2);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;color:var(--purple);flex:none}
+.review.feat .avatar{background:var(--gold);color:var(--ink)}
+.who b{display:block;font-size:15px;line-height:1.4}
+.who div > span{font-size:14px;color:var(--muted)}
+.fb-split{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+.shots{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:26px}
+.shots h3{font-size:20px}
+.shots-grid{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:170px;gap:10px;margin-top:14px}
+.shots-grid .gi img{object-position:top}
+
+/* events */
+.events{background:var(--paper-2)}
+.event-list{display:flex;flex-direction:column;gap:14px}
+.event{display:grid;grid-template-columns:96px 1fr auto;gap:22px;align-items:center;padding:20px;border:1px solid var(--line);border-radius:var(--r);background:var(--white)}
+.event[hidden]{display:none}
+.date{background:var(--ink);color:#fff;border-radius:14px;text-align:center;padding:10px 4px;line-height:1.3}
+.date b{display:block;font-family:var(--display);font-size:22px;color:var(--gold)}
+.date span{font-size:13px}
+.event h3{font-size:19px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14px;color:var(--muted);margin-top:4px}
+.kind{display:inline-block;font-size:12px;font-weight:700;padding:1px 10px;border-radius:999px;margin-inline-start:8px;vertical-align:middle;background:var(--gold-soft);color:var(--gold-text)}
+.empty{padding:28px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:var(--r)}
+
+/* forms */
+form.fpanel{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:30px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.field{display:flex;flex-direction:column;gap:6px}
+.full{grid-column:1/-1}
+label,legend{font-size:15px;font-weight:600}
+.opt{font-weight:400;color:var(--muted)}
+input,select,textarea{font:16px var(--body);color:var(--ink);background:var(--paper);border:1px solid #d5cce3;border-radius:12px;padding:12px 14px;min-height:48px;width:100%}
+textarea{min-height:110px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--purple);box-shadow:0 0 0 3px rgba(95,75,141,.18)}
+input[type="file"]{padding:10px;background:var(--paper-2);border-style:dashed;cursor:pointer}
+fieldset{border:0;padding:0;margin:0}
+.types{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:8px}
+.type input,.rate input{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;min-height:0;padding:0;border:0}
+.type > span{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;min-height:88px;justify-content:center;padding:10px;border:1.5px solid var(--line);border-radius:14px;font-size:14px;font-weight:500;cursor:pointer;background:var(--paper);color:var(--muted)}
+.type input:checked + span{border-color:var(--purple);background:var(--purple-soft);color:var(--ink)}
+.type input:focus-visible + span{outline:3px solid var(--gold);outline-offset:2px}
+.rate{display:flex;flex-direction:row-reverse;justify-content:flex-end;gap:2px}
+.rate label{cursor:pointer;color:#d5cce3;width:44px;height:44px;display:flex;align-items:center;justify-content:center}
+.rate label:hover,.rate label:hover ~ label,.rate input:checked ~ label{color:var(--gold)}
+.rate input:focus-visible + label{outline:3px solid var(--purple);border-radius:8px}
+.form-note{font-size:14px;color:var(--muted)}
+.error{color:#b3261e;font-size:14px}
+.error[hidden],.sent[hidden]{display:none}
+.sent{background:var(--gold-soft);border-radius:14px;padding:16px;font-size:15px}
+.hp{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* booking */
+.book-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:start}
+.quick{display:flex;flex-direction:column;gap:14px;margin-top:20px}
+.quick-card{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;background:var(--white);border:1px solid var(--line);border-radius:18px;padding:20px}
+.quick-card.main{border:2px solid var(--gold)}
+.quick-card .btn{grid-column:1/-1}
+.quick-card b{display:block;font-size:17px}
+.quick-card div > span{font-size:15px;color:var(--muted)}
+.qi{width:48px;height:48px;border-radius:14px;background:var(--purple-soft);color:var(--purple);display:flex;align-items:center;justify-content:center}
+.quick-card.main .qi{background:var(--gold);color:var(--ink)}
+.contact-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.contact-links a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--white);text-decoration:none;font-size:15px;font-weight:500}
+.contact-links a:hover{border-color:var(--purple)}
+
+/* footer */
+footer{background:var(--paper-2);border-top:1px solid var(--line);padding:56px 0 28px;color:var(--muted)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
+.footlogo{width:260px;max-width:80%}
+.slogan{font-family:var(--display);font-size:20px;color:var(--ink);margin-top:14px}
+footer h3{font-size:17px;color:var(--ink);margin-bottom:10px}
+footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;font-size:15px}
+footer a{text-decoration:none}
+footer a:hover{color:var(--purple);text-decoration:underline}
+.copy{border-top:1px solid var(--line);margin-top:36px;padding-top:18px;font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(27,20,46,.94);display:flex;align-items:center;justify-content:center;padding:24px}
+.lb[hidden]{display:none}
+.lb img{max-width:100%;max-height:100%;border-radius:12px;object-fit:contain}
+.lb-close{position:absolute;top:16px;inset-inline-end:16px;width:48px;height:48px;border-radius:50%;border:0;background:#fff;color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center}
+
+/* responsive */
+@media (max-width:1060px){
+  .stats ul{grid-template-columns:repeat(4,1fr)}
+  .chain{grid-template-columns:1fr}
+  .arrow{height:36px}
+  .arrow svg{transform:rotate(90deg)!important}
+}
+@media (max-width:960px){
+  .hero-grid,.about-grid,.book-grid,.vm-grid,.fb-split,.aud,.p-media,.vfeat{grid-template-columns:1fr}
+  .ripple{max-width:280px;order:-1}
+  .plans,.fb-grid,.principles{grid-template-columns:1fr 1fr}
+  .cols{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .photo{max-width:420px}
+  .p-video video{aspect-ratio:848/640;height:auto}
+  .g3{grid-template-columns:1fr 1fr;grid-auto-rows:220px}
+  .g3 .big{grid-column:span 2}
+  .usp-box{grid-template-columns:1fr;padding:34px}
+}
+@media (max-width:860px){
+  .menu-btn{display:flex}
+  .nav-links{position:absolute;top:72px;inset-inline:0;flex-direction:column;align-items:stretch;background:var(--white);border-bottom:1px solid var(--line);padding:12px 22px 20px;display:none}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:12px 14px}
+  .lang-btn,.nav-links .btn{margin:6px 0 0}
+}
+@media (max-width:760px){
+  section{padding:72px 0}
+  .stats ul{grid-template-columns:1fr 1fr}
+  .plans,.fb-grid,.principles,.cols,.foot-grid{grid-template-columns:1fr}
+  .review.feat,.review.cert,.g5 .gi:last-child{grid-column:auto}
+  .g4 .gi:last-child{grid-column:span 2}
+  .g5{grid-template-columns:1fr 1fr;grid-auto-rows:130px}
+  .event{grid-template-columns:76px 1fr}
+  .event .btn{grid-column:1/-1}
+  form.fpanel{grid-template-columns:1fr;padding:22px}
+  .types{grid-template-columns:1fr 1fr}
+  .project{padding:20px}
+  .vm-card{padding:26px}
+  .photo .badge{inset-inline-start:10px}
+}
+
+/* current role */
+.now{margin-top:22px;background:var(--white);border:1px solid var(--line);border-inline-start:4px solid var(--gold);border-radius:16px;padding:20px 22px}
+.now-tag{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--gold-text);background:var(--gold-soft);padding:2px 12px;border-radius:999px;margin-bottom:8px}
+.now-tag .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px rgba(216,174,69,.3)}
+.now h3{font-size:20px}
+.now-org{font-size:14px;font-weight:600;color:var(--purple);margin:2px 0 8px}
+.now p:last-child{font-size:15px;color:var(--muted)}
+.card.current{border-color:var(--gold);background:linear-gradient(180deg,var(--gold-soft),var(--white) 60%)}
+
+/* harvard */
+.harvard{padding:64px 0;background:var(--paper-2)}
+.hv-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:44px;align-items:center;background:var(--white);border:1px solid var(--line);border-radius:28px;padding:28px;box-shadow:0 24px 50px -30px rgba(43,32,70,.35)}
+.hv-img{border-radius:16px;aspect-ratio:1760/1360;box-shadow:0 0 0 6px var(--gold-soft),0 0 0 7px var(--gold)}
+.hv-img img{object-fit:contain;background:#fbf9ef}
+.hv-tag{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--gold);font-size:13px;font-weight:700;padding:4px 14px;border-radius:999px}
+.hv-school{margin-top:14px;font-weight:700;color:#a51c30;letter-spacing:.02em}
+.hv-title{font-size:clamp(24px,3vw,34px);margin-top:6px;font-family:'Bricolage Grotesque',system-ui,sans-serif;direction:ltr;text-align:start}
+html[lang="ar"] .hv-title,html[lang="ar"] .hv-school{direction:ltr;text-align:right}
+.hv-date{margin-top:6px;font-weight:600;color:var(--purple)}
+.hv-desc{margin-top:14px;color:var(--muted)}
+.hv-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:22px}
+.hv-id{font-size:14px;color:var(--muted)}
+.hv-id bdi{font-weight:600;color:var(--ink)}
+.hero .creds-mini{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:14px;font-weight:600;color:var(--ink);background:var(--white);border:1px solid var(--line);border-radius:999px;padding:5px 14px;text-decoration:none}
+.hero .creds-mini b{color:#a51c30}
+.hero .creds-mini:hover{border-color:var(--gold)}
+@media (max-width:960px){.hv-grid{grid-template-columns:1fr;padding:20px;gap:24px}}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap nav" aria-label="Main">
+    <a href="#top" class="brand">
+      <img src="media/brand/logo-gold.png" alt="" width="50" height="36">
+      <span><b><span class="en">Asmaa Tarek</span><span class="ar">أسماء طارق</span></b><small><span class="en">Butterfly Effect</span><span class="ar">أثر الفراشة</span></small></span>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks" aria-label="Menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about"><span class="en">About</span><span class="ar">عنّي</span></a></li>
+      <li><a href="#services"><span class="en">Services</span><span class="ar">الخدمات</span></a></li>
+      <li><a href="#work"><span class="en">Work</span><span class="ar">أعمالي</span></a></li>
+      <li><a href="#consult"><span class="en">Consulting</span><span class="ar">الاستشارات</span></a></li>
+      <li><a href="#feedback"><span class="en">Feedback</span><span class="ar">آراء الناس</span></a></li>
+      <li><button type="button" class="lang-btn" id="langBtn"><span class="en" lang="ar">العربية</span><span class="ar" lang="en">English</span></button></li>
+      <li><a href="#book" class="btn btn-gold"><span class="en">Request a session</span><span class="ar">اطلب جلسة</span></a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow"><span class="en">Facilitator · Trainer · Career Coach · Learning Designer</span><span class="ar">ميسّرة · مدرّبة · كوتش مهني · مصممة تجارب تعلّم</span></p>
+      <h1><span class="en">Small learning moments create <em>deep impact</em></span><span class="ar">لحظات تعلّم صغيرة تصنع <em>أثرًا عميقًا</em></span></h1>
+      <p class="name"><span class="en">Asmaa Tarek <span class="hl">| Butterfly Effect</span></span><span class="ar">أسماء طارق <span class="hl">| أثر الفراشة</span></span></p>
+      <a class="creds-mini" href="#harvard-cert"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M8.5 14 7 22l5-3 5 3-1.5-8"/></svg><span><span class="en">Certified by</span><span class="ar">معتمدة من</span> <b>Harvard Kennedy School</b></span></a>
+      <p class="lede"><span class="en">For 17+ years I have designed and scaled learning and youth leadership programs across humanitarian, community, academic and government settings, turning complex social needs into clear learning journeys, practical curricula and leadership pipelines.</span><span class="ar">على مدى أكثر من 17 سنة صمّمت برامج تعلّم وقيادة شبابية في سياقات إنسانية ومجتمعية وأكاديمية وحكومية، وحوّلت احتياجات اجتماعية معقدة لرحلات تعلّم واضحة ومناهج عملية ومسارات قيادة.</span></p>
+      <div class="cta">
+        <a href="#book" class="btn btn-gold" data-cal="intro" data-plan-en="Intro call" data-plan-ar="مكالمة تعارف" target="_blank" rel="noopener"><span class="en">Request an intro call</span><span class="ar">اطلب مكالمة تعارف</span></a>
+        <a href="#work" class="btn btn-line"><span class="en">View the work</span><span class="ar">شوف الأعمال</span></a>
+      </div>
+    </div>
+    <div class="ripple" role="img" aria-label="Butterfly Effect logo">
+      <svg viewBox="0 0 400 400" aria-hidden="true">
+        <circle class="ring" cx="200" cy="200" r="190" opacity=".16"/>
+        <circle class="ring" cx="200" cy="200" r="150" opacity=".26"/>
+        <circle class="ring" cx="200" cy="200" r="110" opacity=".4"/>
+        <circle class="ring pulse" cx="200" cy="200" r="190" stroke="#d8ae45" stroke-width="2.5"/>
+        <circle class="ring pulse p2" cx="200" cy="200" r="190" stroke="#d8ae45" stroke-width="2.5"/>
+        <circle class="ring pulse p3" cx="200" cy="200" r="190" stroke="#d8ae45" stroke-width="2.5"/>
+      </svg>
+      <img src="media/brand/logo-gold.png" alt="">
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats" aria-label="Impact in numbers">
+  <div class="wrap">
+    <ul>
+      <li><b><bdi>17+</bdi></b><span><span class="en">years of experience</span><span class="ar">سنة خبرة</span></span></li>
+      <li><b><bdi>5,000+</bdi></b><span><span class="en">children reached</span><span class="ar">طفل وطفلة</span></span></li>
+      <li><b><bdi>7,000+</bdi></b><span><span class="en">young people reached</span><span class="ar">شاب وشابة</span></span></li>
+      <li><b><bdi>450+</bdi></b><span><span class="en">families</span><span class="ar">أسرة</span></span></li>
+      <li><b><bdi>50+</bdi></b><span><span class="en">learning manuals &amp; toolkits</span><span class="ar">دليل وحقيبة تدريبية</span></span></li>
+      <li><b><bdi>250+</bdi></b><span><span class="en">youth &amp; community initiatives led or mentored</span><span class="ar">مبادرة شبابية ومجتمعية قدتها أو وجّهتها</span></span></li>
+      <li><b><bdi>5,000+</bdi></b><span><span class="en">training hours · 1,000+ coaching hours</span><span class="ar">ساعة تدريب · +1,000 ساعة كوتشينج</span></span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="photo">
+      <img src="media/img/asmaa-photo.jpg" alt="Asmaa Tarek" width="815" height="1019" data-alt-ar="أسماء طارق">
+      <div class="badge"><img src="media/brand/logo-gold.png" alt=""><b><span class="en">Butterfly Effect</span><span class="ar">أثر الفراشة</span></b></div>
+    </div>
+    <div>
+      <span class="kicker"><span class="en">About me</span><span class="ar">عنّي</span></span>
+      <h2><span class="en">My work starts with people</span><span class="ar">الشغل بيبدأ من الإنسان</span></h2>
+      <p class="title"><span class="en">Humanitarian &amp; International Development Leader · Education Systems &amp; Learning Design · Youth Leadership for Social Impact</span><span class="ar">قيادية في العمل الإنساني والتنموي الدولي · نظم التعليم وتصميم التعلّم · القيادة الشبابية من أجل الأثر الاجتماعي</span></p>
+      <p class="lead"><span class="en">Education and learning design professional with 17+ years of experience across humanitarian and development contexts.</span><span class="ar">متخصصة في التعليم وتصميم التعلّم، بخبرة أكتر من 17 سنة في السياقات الإنسانية والتنموية.</span></p>
+      <p class="lead"><span class="en">I work at the intersection of human-centered empowerment, purposeful learning design, and community-led action, supporting children, youth, and diverse communities to turn learning into real impact. My expertise includes curriculum and training design, capacity building, mentoring, and supporting youth-led initiatives from ideation to implementation.</span><span class="ar">بشتغل في نقطة التقاء التمكين المتمحور حول الإنسان، وتصميم التعلّم الهادف، والفعل المجتمعي، وبدعم الأطفال والشباب والمجتمعات المتنوعة إنهم يحوّلوا التعلّم لأثر حقيقي. وخبرتي في تصميم المناهج والتدريب، وبناء القدرات، والإرشاد، ودعم المبادرات الشبابية من الفكرة للتنفيذ.</span></p>
+<div class="now">
+        <span class="now-tag"><span class="dot" aria-hidden="true"></span><span class="en">Currently · Law and human rights</span><span class="ar">حاليًا · القانون وحقوق الإنسان</span></span>
+        <h3><span class="en">Legal Assistant · ACHPR</span><span class="ar">مساعدة قانونية · ACHPR</span></h3>
+        <p class="now-org"><span class="en">African Union Youth Volunteer Corps (AUYVC) · African Commission on Human and Peoples’ Rights</span><span class="ar">فيلق متطوعي شباب الاتحاد الأفريقي (AUYVC) · اللجنة الأفريقية لحقوق الإنسان والشعوب</span></p>
+        <p><span class="en">Legal research and rights analysis on torture prevention, refugees, IDPs and migrants, and individual Communications, plus institutional reporting with an enhanced thematic approach approved for future sessions.</span><span class="ar">بحث قانوني وتحليل حقوقي في منع التعذيب، واللاجئين والنازحين والمهاجرين، والبلاغات الفردية، بالإضافة لتقارير مؤسسية بنهج موضوعي مطوّر اتعتمد للدورات الجاية.</span></p>
+      </div>
+      <div class="serve">
+        <h3><span class="en">Who I work with</span><span class="ar">بشتغل مع</span></h3>
+        <ul class="chips">
+          <li><span class="en">Children &amp; adolescents</span><span class="ar">الأطفال والمراهقين</span></li>
+          <li><span class="en">Youth</span><span class="ar">الشباب</span></li>
+          <li><span class="en">Women</span><span class="ar">النساء</span></li>
+          <li><span class="en">Refugees &amp; migrants</span><span class="ar">اللاجئين والمهاجرين</span></li>
+          <li><span class="en">Families &amp; caregivers</span><span class="ar">الأسر ومقدمي الرعاية</span></li>
+          <li><span class="en">NGOs, UN agencies &amp; government</span><span class="ar">المنظمات والأمم المتحدة والجهات الحكومية</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- HARVARD -->
+<section class="harvard" id="harvard-cert" aria-label="Harvard Kennedy School certificate">
+  <div class="wrap hv-grid">
+    <button type="button" class="gi hv-img" data-full="media/img/harvard-certificate.jpg" aria-label="Enlarge certificate"><img src="media/img/harvard-certificate.jpg" alt="Harvard Kennedy School Executive Education certificate: Public Narrative: Leadership, Storytelling, and Action, awarded to Asmaa Tarek Mossad, 2021" loading="lazy"></button>
+    <div>
+      <span class="hv-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M8.5 14 7 22l5-3 5 3-1.5-8"/></svg><span class="en">Featured credential</span><span class="ar">شهادة مميزة</span></span>
+      <p class="hv-school">Harvard Kennedy School · Executive Education</p>
+      <h2 class="hv-title">Public Narrative: Leadership, Storytelling, and Action</h2>
+      <p class="hv-date"><span class="en">August 30 – December 17, 2021</span><span class="ar">30 أغسطس – 17 ديسمبر 2021</span></p>
+      <p class="hv-desc"><span class="en">A Harvard Kennedy School program on using story to lead and move people to act, the same thread that runs through Asmaa’s work: turning small learning moments into collective action.</span><span class="ar">برنامج من كلية كينيدي بجامعة هارفارد عن استخدام القصة في القيادة وتحريك الناس للفعل، ونفس الخيط ده ماشي في شغل أسماء كله: إنها تحوّل لحظات التعلّم الصغيرة لفعل جماعي.</span></p>
+      <div class="hv-actions">
+        <a class="btn btn-gold" href="https://cecredential-validation.tlt.harvard.edu/" target="_blank" rel="noopener"><span class="en">Verify on Harvard’s site</span><span class="ar">اتأكد منها على موقع هارفارد</span></a>
+        <span class="hv-id"><span class="en">Credential ID</span><span class="ar">رقم الشهادة</span> <bdi>21PI-1164-ANDB</bdi></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION & MISSION -->
+<section class="vm" id="values">
+  <div class="wrap">
+    <span class="kicker"><span class="en">Vision &amp; Mission</span><span class="ar">الرؤية والرسالة</span></span>
+    <h2><span class="en">The bigger picture my work serves</span><span class="ar">الصورة الكبيرة اللي شغلي كله بيخدمها</span></h2>
+    <div class="vm-grid">
+      <article class="vm-card">
+        <span class="label"><span class="en">Vision</span><span class="ar">رؤيتي</span></span>
+        <p><span class="en">A world where learning empowers people to understand themselves, shape their futures, and create meaningful change in their communities.</span><span class="ar">عالم يكون فيه التعلّم وسيلة بتمكّن الناس إنهم يفهموا نفسهم، ويشكّلوا مستقبلهم، ويصنعوا تغيير حقيقي في مجتمعاتهم.</span></p>
+        <img src="media/brand/logo-white.png" alt="">
+      </article>
+      <article class="vm-card">
+        <span class="label"><span class="en">Mission</span><span class="ar">رسالتي</span></span>
+        <p><span class="en">To design and deliver human-centered learning systems that respond to real needs, build individual and collective capacity, and translate learning into action and community-led impact.</span><span class="ar">إني أصمم وأنفذ أنظمة تعلّم محورها الإنسان، بتستجيب لاحتياجات حقيقية، وبتبني القدرات الفردية والجماعية، وبتحوّل التعلّم لفعل وأثر يقوده المجتمع.</span></p>
+        <img src="media/brand/logo-white.png" alt="">
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE CHAIN -->
+<section id="chain">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="kicker"><span class="en">My values</span><span class="ar">قيمي</span></span>
+        <h2><span class="en">People → Learning → Action</span><span class="ar">من الإنسان.. للتعلّم.. للفعل</span></h2>
+      </div>
+      <p class="lead"><span class="en">Three connected values that form one chain, and set this work apart from ordinary training.</span><span class="ar">تلات قيم مترابطين في سلسلة واحدة، وده اللي بيفرّق شغلي عن التدريب العادي.</span></p>
+    </div>
+    <div class="chain">
+      <article class="val">
+        <div class="num">1</div>
+        <h3><span class="en">Human-Centered Empowerment</span><span class="ar">تمكين يبدأ من الإنسان</span></h3>
+        <p><span class="en">I don’t just “train” people. I build the person first, before the skill or the project.</span><span class="ar">أنا مش "بدرّب" الناس وبس. ببني الإنسان الأول، قبل المهارة وقبل المشروع.</span></p>
+        <ul><li><span class="en">Self-awareness</span><span class="ar">الوعي بالذات</span></li><li><span class="en">Emotional intelligence</span><span class="ar">الذكاء العاطفي</span></li><li><span class="en">Psychological safety</span><span class="ar">الأمان النفسي</span></li><li><span class="en">Voice &amp; identity</span><span class="ar">الصوت والهوية</span></li></ul>
+        <blockquote><span class="en">No sustainable impact without empowered humans.</span><span class="ar">مفيش أثر مستدام من غير إنسان متمكّن.</span></blockquote>
+      </article>
+      <div class="arrow" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <article class="val">
+        <div class="num">2</div>
+        <h3><span class="en">Learning Design with Purpose</span><span class="ar">تصميم تعلّم له هدف</span></h3>
+        <p><span class="en">Learning is a carefully designed system that serves real change. Every piece of content starts with one question: what will this change in the learner’s life?</span><span class="ar">التعلّم نظام متصمم بعناية عشان يخدم تغيير واقعي. وكل محتوى بيبدأ بسؤال: هيغيّر إيه في حياة المتعلّم؟</span></p>
+        <ul><li><span class="en">Curricula &amp; manuals</span><span class="ar">مناهج وأدلة</span></li><li><span class="en">Learning journeys</span><span class="ar">رحلات تعلّم</span></li><li>Play-based learning</li><li>Design thinking</li></ul>
+        <blockquote><span class="en">I don’t deliver sessions. I design learning systems.</span><span class="ar">أنا مش بقدّم جلسات.. أنا بصمم أنظمة تعلّم.</span></blockquote>
+      </article>
+      <div class="arrow" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <article class="val">
+        <div class="num">3</div>
+        <h3><span class="en">From Learning to Action</span><span class="ar">من التعلّم للفعل</span></h3>
+        <p><span class="en">I don’t stop at understanding or enthusiasm. I connect learning to practice, initiatives and leadership.</span><span class="ar">مش بقف عند الفهم أو الحماس، بربط التعلّم بالممارسة والمبادرات والقيادة.</span></p>
+        <ul><li><span class="en">Initiatives &amp; projects</span><span class="ar">مبادرات ومشروعات</span></li><li><span class="en">Job opportunities</span><span class="ar">فرص عمل</span></li><li><span class="en">Community leadership</span><span class="ar">قيادة مجتمعية</span></li><li><span class="en">Mentoring &amp; follow-up</span><span class="ar">إرشاد ومتابعة</span></li></ul>
+        <blockquote><span class="en">Learning is successful only when it moves people to act.</span><span class="ar">التعلّم بيكون ناجح بس لما يحرّك الناس للفعل.</span></blockquote>
+      </article>
+    </div>
+    <div class="vfeat">
+      <video controls playsinline preload="metadata" poster="media/learning-journey.jpg" aria-label="Asmaa Tarek on the Hemaya Project learning journey">
+        <source src="media/learning-journey.mp4" type="video/mp4">
+      </video>
+      <div>
+        <span class="vtag"><span class="en">See the journey</span><span class="ar">شوف الرحلة بنفسك</span></span>
+        <h3><span class="en">The learning journey in the Hemaya Project</span><span class="ar">رحلة التعلّم في مشروع حماية</span></h3>
+        <p><span class="en">Asmaa explains how the journey starts with participants discovering themselves, their learning style and their goals, then moves into a youth-led initiative journey tackling real challenges in their communities.</span><span class="ar">أسماء بتحكي إزاي الرحلة بتبدأ من إن المشارك يكتشف نفسه وطريقة تعلّمه ويحدد أهدافه، وبعدها تكمّل لرحلة مبادرة يقودها الشباب بنفسهم عشان يحلّوا تحديات حقيقية في مجتمعهم.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES: TWO PATHS -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="kicker"><span class="en">Services</span><span class="ar">الخدمات</span></span>
+        <h2><span class="en">Two paths, one impact</span><span class="ar">مساران.. وأثر واحد</span></h2>
+      </div>
+      <p class="lead"><span class="en">I work with organizations building learning and leadership programs, and with young people shaping their careers and their paths.</span><span class="ar">بشتغل مع الجهات اللي بتبني برامج تعلّم وقيادة، ومع الشباب اللي بيبنوا مسارهم المهني والشخصي.</span></p>
+    </div>
+    <div class="aud">
+      <div class="panel org">
+        <span class="ptag"><span class="en">Path 1</span><span class="ar">المسار الأول</span></span>
+        <h3><span class="en">For organizations</span><span class="ar">للجهات والمؤسسات</span></h3>
+        <p class="d"><span class="en">A partner to design, deliver and measure a learning program.</span><span class="ar">شريك في تصميم برنامج التعلّم وتنفيذه وقياس أثره.</span></p>
+        <ul>
+          <li><strong><span class="en">Curriculum &amp; learning design</span><span class="ar">تصميم المناهج والحقائب التدريبية</span></strong><span><span class="en">Facilitator guides, slides, participant handouts and assessment tools, ready to deliver.</span><span class="ar">أدلة ميسّرين، عروض، أوراق للمشاركين، وأدوات تقييم، جاهزة للتنفيذ.</span></span></li>
+          <li><strong><span class="en">Training of trainers &amp; capacity building</span><span class="ar">تدريب المدربين وبناء القدرات</span></strong><span><span class="en">Preparing teams of trainers and coaches with one method and a working handbook.</span><span class="ar">إعداد فرق من المدربين والكوتشز بمنهجية موحدة ودليل عمل.</span></span></li>
+          <li><strong><span class="en">Youth project management</span><span class="ar">إدارة مشاريع الشباب</span></strong><span><span class="en">From outreach and participant selection to delivery, reporting and the closing event.</span><span class="ar">من التواصل واختيار المشاركين حتى التنفيذ والتقارير وفعالية الختام.</span></span></li>
+          <li><strong><span class="en">Assessment, quality assurance &amp; reporting</span><span class="ar">التقييم وضمان الجودة والتقارير</span></strong><span><span class="en">Assessment tools, data analysis and reports that turn into actionable recommendations.</span><span class="ar">أدوات تقييم، وتحليل بيانات، وتقارير بتتحول لتوصيات قابلة للتنفيذ.</span></span></li>
+        </ul>
+        <a href="#book" class="btn" data-type="training" data-plan-en="Organizational learning program" data-plan-ar="برنامج تعلّم لمؤسسة"><span class="en">Start a project</span><span class="ar">ابدأ مشروع</span></a>
+      </div>
+      <div class="panel">
+        <span class="ptag"><span class="en">Path 2</span><span class="ar">المسار التاني</span></span>
+        <h3><span class="en">For young people</span><span class="ar">للشباب</span></h3>
+        <p class="d"><span class="en">A practical space to know yourself, prepare for work and start your own initiative.</span><span class="ar">مساحة عملية تعرف فيها نفسك، وتجهّز لسوق العمل، وتبدأ مبادرتك.</span></p>
+        <ul>
+          <li><strong><span class="en">One-to-one career coaching</span><span class="ar">كوتشينج مهني فردي</span></strong><span><span class="en">Clarity on direction, a career plan and interview preparation.</span><span class="ar">وضوح في الاتجاه، وخطة مهنية، وتحضير للمقابلات.</span></span></li>
+          <li><strong><span class="en">Job search club</span><span class="ar">نادي البحث عن وظيفة</span></strong><span><span class="en">CVs, LinkedIn, applications, negotiation and mock interviews.</span><span class="ar">السيرة الذاتية، ولينكدإن، والتقديم، والتفاوض، ومحاكاة المقابلات.</span></span></li>
+          <li><strong><span class="en">Life skills &amp; emotional intelligence workshops</span><span class="ar">ورش المهارات الحياتية والذكاء العاطفي</span></strong><span><span class="en">Self-discovery, communication, time management and confidence.</span><span class="ar">اكتشاف الذات، والتواصل، وإدارة الوقت، والثقة بالنفس.</span></span></li>
+          <li><strong><span class="en">Freelancing &amp; digital skills</span><span class="ar">العمل الحر والمهارات الرقمية</span></strong><span><span class="en">From writing proposals to managing money and building a lasting freelance career.</span><span class="ar">من كتابة العروض لإدارة الفلوس وبناء مسار عمل حر مستدام.</span></span></li>
+        </ul>
+        <a href="#consult" class="btn btn-line"><span class="en">See coaching sessions</span><span class="ar">شوف جلسات الكوتشينج</span></a>
+      </div>
+    </div>
+    <div class="principles">
+      <div>
+        <h3><span class="en">Learning by doing, together</span><span class="ar">تعلّم بالتجربة والمشاركة</span></h3>
+        <p><span class="en">Storytelling, role-play, games and collaborative work turn technical content into practice people remember.</span><span class="ar">القصص، ولعب الأدوار، والألعاب، والتعلّم التعاوني بيحوّلوا المحتوى التقني لخبرة عملية المشاركين بيفتكروها.</span></p>
+      </div>
+      <div>
+        <h3><span class="en">Rights, safeguarding, inclusion</span><span class="ar">حقوق وحماية ودمج</span></h3>
+        <p><span class="en">Every program rests on gender equality, child protection, Do No Harm and psychosocial support.</span><span class="ar">كل برنامج قايم على المساواة بين الجنسين، وحماية الطفل، ومبدأ عدم الإضرار، والدعم النفسي والاجتماعي.</span></p>
+      </div>
+      <div>
+        <h3><span class="en">From idea to a ready package</span><span class="ar">من الفكرة لحقيبة جاهزة</span></h3>
+        <p><span class="en">I deliver the facilitator guide, slides, handouts and assessment tools as one package your team can run.</span><span class="ar">بسلّم دليل الميسّر والعروض وأوراق المشاركين وأدوات التقييم في حزمة واحدة فريقك يقدر ينفذها.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USP -->
+<section class="usp" aria-label="What sets me apart">
+  <div class="wrap">
+    <div class="usp-box">
+      <img src="media/brand/logo-white.png" alt="">
+      <p><span class="en">I don’t deliver training sessions. I design human-centered learning systems and stay with people until learning turns into real action.</span><span class="ar">مش بقدّم جلسات تدريب وخلاص. بصمم أنظمة تعلّم محورها الإنسان، وبفضل مع الناس لحد ما التعلّم يتحوّل لفعل حقيقي.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work" style="padding-top:24px">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="kicker"><span class="en">Selected work</span><span class="ar">أعمال مختارة</span></span><h2><span class="en">Real programs, real numbers</span><span class="ar">برامج حقيقية.. وأرقام حقيقية</span></h2></div>
+      <div class="filters" role="group" aria-label="Projects">
+        <button class="chip" aria-pressed="true" data-filter="all"><span class="en">All</span><span class="ar">الكل</span></button>
+        <button class="chip" aria-pressed="false" data-filter="hemaya"><span class="en">Hemaya · Tdh</span><span class="ar">حماية · Tdh</span></button>
+        <button class="chip" aria-pressed="false" data-filter="depi"><span class="en">Digital Egypt Pioneers</span><span class="ar">رواد مصر الرقمية</span></button>
+        <button class="chip" aria-pressed="false" data-filter="ruwwad"><span class="en">Ruwwad</span><span class="ar">رواد التنمية</span></button>
+      </div>
+    </div>
+
+    <article class="project" data-cat="hemaya">
+      <header class="p-head">
+        <div>
+          <div class="p-org"><span class="en">Terre des hommes (Tdh) · with the Ministry of Youth &amp; Sports · supported by the Embassy of Switzerland</span><span class="ar">Terre des hommes (Tdh) · بالشراكة مع وزارة الشباب والرياضة · بدعم من سفارة سويسرا</span></div>
+          <h3><span class="en">Hemaya Project</span><span class="ar">مشروع حماية</span></h3>
+          <div class="p-sub"><span class="en">Comprehensive Opportunities for Protecting and Empowering Youth · 2023–2026</span><span class="ar">فرص شاملة لحماية وتمكين الشباب · 2023–2026</span></div>
+        </div>
+        <span class="p-role"><span class="en">Technical Officer</span><span class="ar">مسؤولة تقنية</span></span>
+      </header>
+      <p class="p-desc"><span class="en">Designed and delivered capacity-building learning journeys that moved young people, including refugees and migrants, from learning to action through life skills, leadership and civic engagement programs. Built strategic partnerships and managed training delivery, procurement, data analysis and reporting, using participatory, mentoring and reflection-based methods.</span><span class="ar">صمّمت ونفّذت رحلات بناء قدرات بتنقل الشباب، ومنهم لاجئين ومهاجرين، من التعلّم للفعل، من خلال برامج المهارات الحياتية والقيادة والمشاركة المدنية. وبنيت شراكات استراتيجية، وأدرت تنفيذ التدريب والمشتريات وتحليل البيانات والتقارير، بمنهجيات تشاركية قائمة على الإرشاد والتأمل.</span></p>
+      <ul class="p-figs">
+        <li><b><bdi>900+</bdi></b><span class="en">youth trained &amp; mentored</span><span class="ar">شاب وشابة اتدربوا</span></li>
+        <li><b>90</b><span class="en">community initiatives</span><span class="ar">مبادرة مجتمعية</span></li>
+        <li><b>5</b><span class="en">training manuals</span><span class="ar">أدلة تدريبية</span></li>
+        <li><b>6</b><span class="en">strategic partnerships (4 with tech leaders)</span><span class="ar">شراكات استراتيجية (4 مع شركات تكنولوجيا)</span></li>
+      </ul>
+      <div class="p-media">
+        <div class="p-video">
+          <video controls playsinline preload="metadata" poster="media/course-batch.jpg" aria-label="End of the course batch video"><source src="media/course-batch.mp4" type="video/mp4"></video>
+          <span class="cap"><span class="en">End of the course · video</span><span class="ar">ختام الدفعة · فيديو</span></span>
+        </div>
+        <div class="gallery g5 g4">
+          <button type="button" class="gi big" data-full="media/img/hemaya-circle.jpg" aria-label="Enlarge photo"><img src="media/img/hemaya-circle.jpg" alt="Circle session with Hemaya youth" loading="lazy"></button>
+          <button type="button" class="gi" data-full="media/img/hemaya-refugee-day.jpg" aria-label="Enlarge photo"><img src="media/img/hemaya-refugee-day.jpg" alt="Asmaa facilitating on World Refugee Day" loading="lazy"></button>
+          <button type="button" class="gi" data-full="media/img/hemaya-group.jpg" aria-label="Enlarge photo"><img src="media/img/hemaya-group.jpg" alt="Group photo with Hemaya participants" loading="lazy"></button>
+          <button type="button" class="gi" data-full="media/img/hemaya-youth.jpg" aria-label="Enlarge photo"><img src="media/img/hemaya-youth.jpg" alt="Asmaa with young participants" loading="lazy"></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="project" data-cat="depi">
+      <header class="p-head">
+        <div>
+          <div class="p-org"><span class="en">EYouth · powered by the Ministry of Communications &amp; IT (MCIT)</span><span class="ar">EYouth · بدعم من وزارة الاتصالات وتكنولوجيا المعلومات</span></div>
+          <h3><span class="en">Digital Egypt Pioneers Initiative (DEPI)</span><span class="ar">مبادرة رواد مصر الرقمية</span></h3>
+          <div class="p-sub"><span class="en">Your path to a better professional future · 2023–present</span><span class="ar">طريقك لمستقبل مهني أفضل · 2023 حتى الآن</span></div>
+        </div>
+        <span class="p-role"><span class="en">Master Trainer &amp; Coach · Non-Technical Track Head</span><span class="ar">ماستر ترينر وكوتش · رئيسة المسار غير التقني</span></span>
+      </header>
+      <p class="p-desc"><span class="en">Led the non-technical track: blended youth training, a training of trainers, coaching for technical coaches and an authored coaching handbook. In June 2025 the Google Data Analyst Specialist team won first place, and Asmaa received a Certificate of Appreciation for her role in empowering youth.</span><span class="ar">قيادة المسار غير التقني: تدريب مدمج للشباب، وتدريب مدربين، وكوتشينج للمدربين التقنيين، وتأليف دليل كوتشينج. وفي يونيو 2025 فريق Google Data Analyst Specialist خد المركز الأول، وأسماء خدت شهادة تقدير على دورها في تمكين الشباب.</span></p>
+      <ul class="p-figs">
+        <li><b><bdi>1,500+</bdi></b><span class="en">youth trained</span><span class="ar">شاب وشابة</span></li>
+        <li><b>500</b><span class="en">blended training hours</span><span class="ar">ساعة تدريب مدمج</span></li>
+        <li><b>60</b><span class="en">trainers (ToT)</span><span class="ar">مدرب (TOT)</span></li>
+        <li><b>20</b><span class="en">technical coaches coached</span><span class="ar">كوتش تقني</span></li>
+        <li><b>1st</b><span class="en">place · Data Analysis team</span><span class="ar">مركز أول · فريق Data Analysis</span></li>
+      </ul>
+      <div class="gallery g3">
+        <button type="button" class="gi big" data-full="media/img/depi-winners.jpg" aria-label="Enlarge photo"><img src="media/img/depi-winners.jpg" alt="The first-place winning team" loading="lazy"></button>
+        <button type="button" class="gi" data-full="media/img/depi-asmaa.jpg" aria-label="Enlarge photo"><img src="media/img/depi-asmaa.jpg" alt="Asmaa at the Digital Egypt Pioneers Initiative" loading="lazy"></button>
+        <button type="button" class="gi contain" data-full="media/img/depi-certificate.jpg" aria-label="Enlarge photo"><img src="media/img/depi-certificate.jpg" alt="Certificate of Appreciation from EYouth, June 2025" loading="lazy"></button>
+      </div>
+    </article>
+
+    <article class="project" data-cat="ruwwad">
+      <header class="p-head">
+        <div>
+          <div class="p-org"><span class="en">Ruwwad for Development · Ruwwad Youth Community Center, Ezbet Khairallah</span><span class="ar">رواد التنمية · مركز رواد الشباب المجتمعي، عزبة خير الله</span></div>
+          <h3><span class="en">Children’s Winter &amp; Summer Camps and Clubs</span><span class="ar">معسكرات ونوادي الأطفال الشتوية والصيفية</span></h3>
+          <div class="p-sub"><span class="en">Child Development · Youth Empowerment · 2013–2023</span><span class="ar">تنمية الطفل · تمكين الشباب · 2013–2023</span></div>
+        </div>
+        <span class="p-role"><span class="en">Child Development Head · Youth Co-founder</span><span class="ar">رئيسة برنامج تنمية الطفل · شريكة مؤسسة</span></span>
+      </header>
+      <p class="p-desc"><span class="en">One of the youth who co-founded the Ruwwad Youth Community Center in Ezbet Khairallah, one of Cairo’s most marginalized areas, and led its child development program, including the winter and summer camps and children’s clubs. Directed budget, M&amp;E systems, annual planning and gender-transformative community engagement.</span><span class="ar">من الشباب اللي أسسوا مركز رواد الشباب المجتمعي في عزبة خير الله، واحدة من أكتر المناطق المهمّشة في القاهرة، وقُدت برنامج تنمية الطفل، ومنه المعسكرات الشتوية والصيفية ونوادي الأطفال. وأدرت الميزانية ونظم المتابعة والتقييم والتخطيط السنوي والمشاركة المجتمعية المراعية للنوع.</span></p>
+      <ul class="p-figs">
+        <li><b><bdi>5,000+</bdi></b><span class="en">children</span><span class="ar">طفل وطفلة</span></li>
+        <li><b><bdi>20+</bdi></b><span class="en">educational units</span><span class="ar">وحدة تعليمية</span></li>
+        <li><b>600</b><span class="en">volunteers managed</span><span class="ar">متطوع</span></li>
+        <li><b><bdi>25+</bdi></b><span class="en">partnerships</span><span class="ar">شراكة</span></li>
+      </ul>
+      <div class="gallery g5">
+        <button type="button" class="gi big" data-full="media/img/ruwwad-certificates.jpg" aria-label="Enlarge photo"><img src="media/img/ruwwad-certificates.jpg" alt="Program closing and certificates at Ruwwad" loading="lazy"></button>
+        <button type="button" class="gi" data-full="media/img/ruwwad-session.jpg" aria-label="Enlarge photo"><img src="media/img/ruwwad-session.jpg" alt="Asmaa facilitating at Ruwwad" loading="lazy"></button>
+        <button type="button" class="gi" data-full="media/img/ruwwad-web.jpg" aria-label="Enlarge photo"><img src="media/img/ruwwad-web.jpg" alt="String web activity with youth" loading="lazy"></button>
+        <button type="button" class="gi" data-full="media/img/ruwwad-profile.jpg" aria-label="Enlarge photo"><img src="media/img/ruwwad-profile.jpg" alt="Asmaa on Ruwwad’s youth empowerment team" loading="lazy"></button>
+        <button type="button" class="gi" data-full="media/img/ruwwad-zoom.jpg" aria-label="Enlarge photo"><img src="media/img/ruwwad-zoom.jpg" alt="Online gathering with the Ruwwad team" loading="lazy"></button>
+      </div>
+    </article>
+
+    <div class="more-work">
+      <h3 class="mw"><span class="en">More selected work</span><span class="ar">أعمال مختارة كمان</span></h3>
+      <div class="grid">
+        <article class="card current">
+          <span class="tag"><span class="en">Law and human rights</span><span class="ar">القانون وحقوق الإنسان</span></span>
+          <h4><span class="en">Legal Assistant · ACHPR</span><span class="ar">مساعدة قانونية · ACHPR</span></h4>
+          <p class="who"><span class="en">African Union Youth Volunteer Corps (AUYVC) · African Commission on Human and Peoples’ Rights</span><span class="ar">فيلق متطوعي شباب الاتحاد الأفريقي (AUYVC) · اللجنة الأفريقية لحقوق الإنسان والشعوب</span></p>
+          <p class="t"><span class="en">Legal research and rights analysis on torture prevention, refugees, IDPs and migrants, and individual Communications, plus institutional reporting with an enhanced thematic approach approved for future sessions.</span><span class="ar">بحث قانوني وتحليل حقوقي في منع التعذيب، واللاجئين والنازحين والمهاجرين، والبلاغات الفردية، بالإضافة لتقارير مؤسسية بنهج موضوعي مطوّر اتعتمد للدورات الجاية.</span></p>
+          <p class="fig"><span class="en">55 Member States · 5 Communications</span><span class="ar">55 دولة عضو · 5 بلاغات</span></p>
+        </article>
+        <article class="card">
+          <span class="tag"><span class="en">Curriculum design</span><span class="ar">تصميم مناهج</span></span>
+          <h4>Nour &amp; Noura</h4>
+          <p class="who"><span class="en">Sanad · UNFPA · National Council for Women · 2026</span><span class="ar">سند للرعاية الوالدية البديلة · UNFPA · المجلس القومي للمرأة · 2026</span></p>
+          <p class="t"><span class="en">Designed and adapted two gender-responsive learning manuals for girls and boys aged 10–14 in alternative care, integrating psychosocial support, child protection and experiential learning.</span><span class="ar">تصميم وتكييف دليلين مراعيين للنوع للبنات والولاد من 10 لـ 14 سنة في الرعاية البديلة، بيدمجوا الدعم النفسي والاجتماعي وحماية الطفل والتعلّم بالتجربة.</span></p>
+          <p class="fig"><span class="en">32 sessions · 192 activities · 4 pillars</span><span class="ar">32 جلسة · 192 نشاط · 4 محاور</span></p>
+        </article>
+        <article class="card">
+          <span class="tag"><span class="en">Project management</span><span class="ar">إدارة مشروع</span></span>
+          <h4>UNIFY</h4>
+          <p class="who"><span class="en">Agent for SDGs · UNESCO grant · 2025</span><span class="ar">Agent for SDGs · منحة اليونسكو · 2025</span></p>
+          <p class="t"><span class="en">Managed a youth empowerment and social cohesion project with digital storytelling and youth-led initiative tracks, grounded in safeguarding, inclusion and Do No Harm.</span><span class="ar">إدارة مشروع لتمكين الشباب والتماسك الاجتماعي بمسارين: السرد الرقمي والمبادرات الشبابية، مع الحماية والدمج ومبدأ عدم الإضرار.</span></p>
+          <p class="fig"><span class="en">45 youth · 12+ videos · 9 initiatives</span><span class="ar">45 مشارك · +12 فيديو · 9 مبادرات</span></p>
+        </article>
+        <article class="card">
+          <span class="tag"><span class="en">Employability &amp; coaching</span><span class="ar">التوظيف والكوتشينج</span></span>
+          <h4>ILO PROSPECTS · EFE · Mahara · ITIDA Gigs</h4>
+          <p class="who"><span class="en">ILO · Education For Employment · UAE · ITIDA</span><span class="ar">منظمة العمل الدولية · التعليم من أجل التوظيف · الإمارات · إيتيدا</span></p>
+          <p class="t"><span class="en">Facilitated job search clubs for youth, women and marginalized groups, plus freelancing training and one-to-one coaching for young people.</span><span class="ar">تيسير نوادي البحث عن وظيفة للشباب والنساء والفئات المهمّشة، وتدريب العمل الحر والكوتشينج الفردي للشباب.</span></p>
+          <p class="fig"><span class="en">~1,000 students · 120+ coaching hours</span><span class="ar">~1,000 طالب · +120 ساعة كوتشينج</span></p>
+        </article>
+        <article class="card">
+          <span class="tag"><span class="en">Civic education</span><span class="ar">تربية مدنية</span></span>
+          <h4>Goethe-Institut Kairo</h4>
+          <p class="who"><span class="en">Dahab &amp; Cairo · 2020–2022</span><span class="ar">دهب والقاهرة · 2020–2022</span></p>
+          <p class="t"><span class="en">Two civic education projects with marginalized children and youth on identity, diversity and peaceful coexistence, using arts-based and experiential methods.</span><span class="ar">مشروعين للتربية المدنية مع أطفال وشباب مهمّشين عن الهوية والتنوع والتعايش، بأساليب فنية وتجريبية.</span></p>
+          <p class="fig"><span class="en">2 projects · proposals to delivery</span><span class="ar">مشروعين · من كتابة المقترح للتنفيذ</span></p>
+        </article>
+        <article class="card">
+          <span class="tag"><span class="en">Adolescents &amp; climate</span><span class="ar">مراهقين ومناخ</span></span>
+          <h4>Pre-COP</h4>
+          <p class="who"><span class="en">Ezraa Shagra · Save the Children · 2022</span><span class="ar">ازرع شجرة · Save the Children · 2022</span></p>
+          <p class="t"><span class="en">Public speaking, negotiation and a COP simulation for adolescents and caregivers, ahead of the first participation of children and adolescents at COP27 in Sharm El-Sheikh.</span><span class="ar">جلسات خطابة وتفاوض ومحاكاة COP للمراهقين ومقدمي الرعاية، تمهيدًا لأول مشاركة للأطفال والمراهقين في COP27 بشرم الشيخ.</span></p>
+          <p class="fig"><span class="en">First adolescents at a COP</span><span class="ar">أول مشاركة للمراهقين في COP</span></p>
+        </article>
+        <article class="card">
+          <span class="tag"><span class="en">Youth leadership</span><span class="ar">قيادة شبابية</span></span>
+          <h4><span class="en">Ministry of Youth &amp; Sports</span><span class="ar">وزارة الشباب والرياضة</span></h4>
+          <p class="who"><span class="en">Youth Trainer &amp; Cairo Governorate Coordinator · 2022–2023</span><span class="ar">مدربة شباب ومنسقة محافظة القاهرة · 2022–2023</span></p>
+          <p class="t"><span class="en">Trained youth in leadership and initiative planning and coordinated workshops across governmental youth centers.</span><span class="ar">تدريب الشباب على القيادة وتخطيط المبادرات، وتنسيق الورش في مراكز الشباب الحكومية.</span></p>
+          <p class="fig"><span class="en">18 youth centers · 39 projects · 31 implemented</span><span class="ar">18 مركز شباب · 39 مشروع · 31 اتنفذوا</span></p>
+        </article>
+        <article class="card">
+          <span class="tag"><span class="en">Child protection &amp; QA</span><span class="ar">حماية الطفل وضمان الجودة</span></span>
+          <h4><span class="en">Sanad · Care Homes Assessor</span><span class="ar">سند · تقييم دور الرعاية</span></h4>
+          <p class="who"><span class="en">with the Ministry of Social Solidarity · 2021–2023</span><span class="ar">مع وزارة التضامن الاجتماعي · 2021–2023</span></p>
+          <p class="t"><span class="en">Institutional assessments of residential care homes against child protection and alternative care standards, with evidence-based recommendations.</span><span class="ar">تقييم مؤسسي لدور الرعاية حسب معايير حماية الطفل والرعاية البديلة، مع توصيات مبنية على الأدلة.</span></p>
+          <p class="fig"><span class="en">30+ assessments across Egypt</span><span class="ar">+30 تقييم على مستوى مصر</span></p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONSULT -->
+<section class="consult" id="consult">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="kicker"><span class="en">Consulting &amp; coaching</span><span class="ar">الاستشارات والكوتشينج</span></span><h2><span class="en">Choose the session that fits you</span><span class="ar">اختار الجلسة المناسبة ليك</span></h2></div>
+      <p class="lead"><span class="en">Online or in person. Everything starts with a short intro call.</span><span class="ar">أونلاين أو حضوري، وكل حاجة بتبدأ بمكالمة تعارف قصيرة.</span></p>
+    </div>
+    <div class="uvp"><p><span class="en">If you work with me, learning will not end in the room. It will show up in people’s choices, initiatives, and leadership.</span><span class="ar">لو اشتغلت معايا، التعلّم مش هيخلص جوه القاعة. هيظهر في اختيارات الناس ومبادراتهم وقيادتهم.</span></p></div>
+    <div class="plans">
+      <article class="plan">
+        <h3><span class="en">Intro call</span><span class="ar">مكالمة تعارف</span></h3>
+        <div class="for"><span class="en">For everyone</span><span class="ar">للجميع</span></div>
+        <div class="price"><span class="en">Free</span><span class="ar">مجانية</span> <small>· <span class="en">20 min</span><span class="ar">20 دقيقة</span></small></div>
+        <p><span class="en">We get to know your challenge and find the right path forward.</span><span class="ar">نتعرف على التحدي اللي عندك ونشوف المسار الأنسب.</span></p>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span class="en">Understanding your needs</span><span class="ar">فهم الاحتياج</span></li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span class="en">Suggesting the right path</span><span class="ar">اقتراح المسار المناسب</span></li>
+        </ul>
+        <div class="plan-actions">
+          <a href="#book" class="btn btn-line" data-cal="intro" data-plan-en="Intro call" data-plan-ar="مكالمة تعارف" target="_blank" rel="noopener"><span class="en">Request a session</span><span class="ar">اطلب جلسة</span></a>
+          <a href="#book" class="ask" data-type="consult" data-plan-en="Question: the intro call" data-plan-ar="سؤال: مكالمة التعارف"><span class="en">Ask a question by email</span><span class="ar">اسأل بالإيميل الأول</span></a>
+        </div>
+      </article>
+      <article class="plan featured">
+        <span class="badge"><span class="en">Most requested</span><span class="ar">الأكثر طلبًا</span></span>
+        <h3><span class="en">1:1 career coaching &amp; consulting</span><span class="ar">كوتشينج واستشارة فردية</span></h3>
+        <div class="for"><span class="en">For youth, trainers, facilitators &amp; professionals</span><span class="ar">للشباب والمدربين والميسّرين والمهنيين</span></div>
+        <div class="price"><span class="en">Price on request</span><span class="ar">السعر عند الطلب</span> <small>· <span class="en">60 min</span><span class="ar">60 دقيقة</span></small></div>
+        <p><span class="en">A focused session on one challenge: career direction, interview prep, designing a program, or an initiative you want to launch.</span><span class="ar">جلسة مركّزة على تحدي واحد: اتجاهك المهني، تحضير لمقابلة، تصميم برنامج، أو مبادرة عايز تطلقها.</span></p>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span class="en">Situation &amp; goals analysis</span><span class="ar">تحليل الموقف والأهداف</span></li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span class="en">Written action plan</span><span class="ar">خطة عمل مكتوبة</span></li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span class="en">Follow-up after two weeks</span><span class="ar">متابعة بعد أسبوعين</span></li>
+        </ul>
+        <div class="plan-actions">
+          <a href="#book" class="btn btn-line" data-cal="session" data-plan-en="1:1 coaching session" data-plan-ar="جلسة كوتشينج فردية" target="_blank" rel="noopener"><span class="en">Request a session</span><span class="ar">اطلب جلسة</span></a>
+          <a href="#book" class="ask" data-type="consult" data-plan-en="Question: 1:1 coaching" data-plan-ar="سؤال: الكوتشينج الفردي"><span class="en">Ask a question by email</span><span class="ar">اسأل بالإيميل الأول</span></a>
+        </div>
+      </article>
+      <article class="plan">
+        <h3><span class="en">For organizations &amp; programs</span><span class="ar">للمنظمات والبرامج</span></h3>
+        <div class="for"><span class="en">NGOs · UN agencies · donors · government</span><span class="ar">منظمات · أمم متحدة · مانحين · جهات حكومية</span></div>
+        <div class="price"><span class="en">Based on scope</span><span class="ar">حسب النطاق</span></div>
+        <p><span class="en">I help programs move beyond awareness and attendance into real capacity, ownership, and community-led outcomes.</span><span class="ar">بساعد البرامج تعدّي مرحلة التوعية والحضور، وتوصل لقدرات حقيقية وملكية ونتائج يقودها المجتمع.</span></p>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span class="en">Curriculum &amp; learning journey design</span><span class="ar">تصميم مناهج ورحلات تعلّم</span></li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span class="en">ToT &amp; capacity building</span><span class="ar">تدريب مدربين وبناء قدرات</span></li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><span class="en">Assessment, QA &amp; reporting</span><span class="ar">تقييم وجودة وتقارير</span></li>
+        </ul>
+        <div class="plan-actions">
+          <a href="#book" class="btn btn-line" data-type="training" data-plan-en="Quote request: organizational program" data-plan-ar="طلب عرض سعر: برنامج لمؤسسة"><span class="en">Request a quote by email</span><span class="ar">اطلب عرض سعر بالإيميل</span></a>
+          <a href="#book" class="ask" data-cal="intro" data-plan-en="Intro call (organization)" data-plan-ar="مكالمة تعارف (مؤسسة)" target="_blank" rel="noopener"><span class="en">Or request an intro call</span><span class="ar">أو اطلب مكالمة تعارف</span></a>
+        </div>
+      </article>
+    </div>
+    <ol class="steps">
+      <li><span class="en">Pick a session and send your request</span><span class="ar">تختار الجلسة وتبعت طلبك</span></li>
+      <li><span class="en">I reply with available times</span><span class="ar">برد عليك بالمواعيد المتاحة</span></li>
+      <li><span class="en">Meet online or in person</span><span class="ar">الجلسة أونلاين أو حضوري</span></li>
+      <li><span class="en">Action plan and follow-up</span><span class="ar">خطة عمل ومتابعة</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section class="creds">
+  <div class="wrap">
+    <span class="kicker"><span class="en">Background</span><span class="ar">الخلفية</span></span>
+    <h2><span class="en">Credentials, education and partners</span><span class="ar">الشهادات والتعليم والشراكات</span></h2>
+    <div class="cols">
+      <div>
+        <h3><span class="en">Certifications</span><span class="ar">الشهادات</span></h3>
+        <ul>
+          <li><b style="color:var(--gold)">Harvard Kennedy School Executive Education</b> · Public Narrative: Leadership, Storytelling, and Action, 2021</li>
+          <li>Swedish Institute Young Leaders Visitors Programme (YLVP), 2018</li>
+          <li>Human Rights Education &amp; Youth Participation for Euro-Arab Dialogue</li>
+          <li>Introduction to Social Projects’ Management</li>
+          <li>Leading Remote Teams</li>
+          <li>Building Leadership for TAG II</li>
+          <li><span class="en">Certified Job Search Club Facilitator, ILO PROSPECTS</span><span class="ar">ميسّرة معتمدة لنادي البحث عن وظيفة، ILO PROSPECTS</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3><span class="en">Education</span><span class="ar">التعليم</span></h3>
+        <ul>
+          <li><span class="en">Diploma of Education, Civil Society &amp; Human Rights, Faculty of Economics and Political Science, Cairo University</span><span class="ar">دبلوم التربية والمجتمع المدني وحقوق الإنسان، كلية الاقتصاد والعلوم السياسية، جامعة القاهرة</span></li>
+          <li><span class="en">Faculty of Law, Cairo University (2008–2012)</span><span class="ar">كلية الحقوق، جامعة القاهرة (2008–2012)</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3><span class="en">Programs with</span><span class="ar">برامج بالشراكة مع</span></h3>
+        <ul>
+          <li><span class="en">African Union · ACHPR</span><span class="ar">الاتحاد الأفريقي · اللجنة الأفريقية لحقوق الإنسان والشعوب</span></li>
+          <li>UNFPA · ILO · UNESCO</li>
+          <li>Save the Children · Plan International</li>
+          <li>Terre des hommes · Goethe-Institut</li>
+          <li>EYouth · ITIDA · Education For Employment</li>
+          <li><span class="en">Ministry of Youth &amp; Sports · National Council for Women · Ministry of Social Solidarity</span><span class="ar">وزارة الشباب والرياضة · المجلس القومي للمرأة · وزارة التضامن الاجتماعي</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEEDBACK -->
+<section id="feedback">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="kicker"><span class="en">Feedback</span><span class="ar">آراء الناس</span></span><h2><span class="en">Impact, in their own words</span><span class="ar">الأثر بلسان اللي عاشوه</span></h2></div>
+      <p class="lead"><span class="en">Real messages from participants and partners. Arabic quotes are translated, with the originals below.</span><span class="ar">رسايل حقيقية من مشاركين وشركاء، زي ما وصلت.</span></p>
+    </div>
+    <div class="fb-grid">
+      <article class="review feat">
+        <div class="qm" aria-hidden="true">“</div>
+        <blockquote><span class="en">Thank you so much. It’s the least we can say to you, truly a million thanks. I’m happy that my thinking and my life changed because of you.</span><span class="ar">شكرًا لحضرتك جدًا.. إحنا أقل حاجة نقدر نقولها لحضرتك إنتِ بجد مليون شكرًا. أنا سعيد إن تغيّر تفكيري وحياتي على إيد حضرتك.</span></blockquote>
+        <div class="who"><div class="avatar" aria-hidden="true"><span class="en">K</span><span class="ar">ك</span></div><div><b><span class="en">Kareem Mohamed</span><span class="ar">كريم محمد</span></b><span><span class="en">Participant · Hemaya Project – Batch 8</span><span class="ar">مشارك · مشروع حماية – الدفعة 8</span></span></div></div>
+      </article>
+            <article class="review">
+        <div class="qm" aria-hidden="true">“</div>
+        <blockquote><span class="en">No words of thanks, gratitude and appreciation will ever do justice to your effort with us and how much you truly cared about us.</span><span class="ar">كل كلام الشكر والامتنان والتقدير ليكي مش هيوفي حقك وتعبك معانا واهتمامك بينا بجد.. ربنا يكرمك وألف شكر.</span></blockquote>
+        <div class="who"><div class="avatar" aria-hidden="true"><span class="en">D</span><span class="ar">د</span></div><div><b><span class="en">Dina Ahmed</span><span class="ar">دينا أحمد</span></b><span><span class="en">Participant · Hemaya Project – Batch 8</span><span class="ar">مشاركة · مشروع حماية – الدفعة 8</span></span></div></div>
+      </article>
+      <article class="review">
+        <div class="qm" aria-hidden="true">“</div>
+        <blockquote>Your mentorship and support truly made all the difference.</blockquote>
+        <div class="who"><div class="avatar" aria-hidden="true"><span class="en">S</span><span class="ar">س</span></div><div><b><span class="en">Salma Adel</span><span class="ar">سلمى عادل</span></b><span><span class="en">Data Analyst · 1st-place team, DEPI</span><span class="ar">Data Analyst · فريق المركز الأول، رواد مصر الرقمية</span></span></div></div>
+      </article>
+      <article class="review short">
+        <div class="qm" aria-hidden="true">“</div>
+        <blockquote><span class="en">We are literally going to miss you so much.</span><span class="ar">حرفيًا هنفتقدك جدًا.</span></blockquote>
+        <div class="who"><div class="avatar" aria-hidden="true"><span class="en">H</span><span class="ar">ح</span></div><div><b><span class="en">Habiba Sayed</span><span class="ar">حبيبة سيد</span></b><span><span class="en">Participant · Hemaya – Batch 8</span><span class="ar">مشاركة · حماية – الدفعة 8</span></span></div></div>
+      </article>
+      <article class="review short">
+        <div class="qm" aria-hidden="true">“</div>
+        <blockquote><span class="en">Thank you, Asmaa. I truly enjoyed being with you.</span><span class="ar">شكرًا ليكي يا أسماء، بجد انبسطت معاكي.</span></blockquote>
+        <div class="who"><div class="avatar" aria-hidden="true"><span class="en">M</span><span class="ar">م</span></div><div><b><span class="en">Menna Allah Osama</span><span class="ar">منة الله أسامة</span></b><span><span class="en">Participant · Hemaya – Batch 8</span><span class="ar">مشاركة · حماية – الدفعة 8</span></span></div></div>
+      </article>
+      <article class="review cert">
+        <div class="qm" aria-hidden="true">“</div>
+        <blockquote>Your guidance and support were vital in empowering youth and ensuring the success of this round.</blockquote>
+        <div class="who"><div class="avatar" aria-hidden="true">E</div><div><b><span class="en">Certificate of Appreciation, EYouth</span><span class="ar">شهادة تقدير من EYouth</span></b><span><span class="en">Digital Egypt Pioneers Initiative · June 2025</span><span class="ar">مبادرة رواد مصر الرقمية · يونيو 2025</span></span></div></div>
+      </article>
+    </div>
+    <div class="fb-split">
+      <div class="shots">
+        <h3><span class="en">The original messages</span><span class="ar">من رسايلهم الأصلية</span></h3>
+        <p class="form-note"><span class="en">Tap any message to enlarge it.</span><span class="ar">دوس على أي رسالة عشان تكبّرها.</span></p>
+        <div class="shots-grid">
+          <button type="button" class="gi" data-full="media/img/fb-batch8.jpg" aria-label="Enlarge"><img src="media/img/fb-batch8.jpg" alt="Thank-you messages from Batch 8" loading="lazy"></button>
+          <button type="button" class="gi" data-full="media/img/fb-dina.jpg" aria-label="Enlarge"><img src="media/img/fb-dina.jpg" alt="Message from Dina Ahmed" loading="lazy"></button>
+          <button type="button" class="gi" data-full="media/img/fb-session.jpg" aria-label="Enlarge"><img src="media/img/fb-session.jpg" alt="Message from a session participant" loading="lazy"></button>
+          <button type="button" class="gi" data-full="media/img/fb-salma.jpg" aria-label="Enlarge"><img src="media/img/fb-salma.jpg" alt="Salma Adel's LinkedIn post" loading="lazy"></button>
+        </div>
+      </div>
+      <form class="fpanel mailform" id="fbForm" action="https://formsubmit.co/asmaatareq91@gmail.com" method="POST" target="_blank" novalidate>
+        <input type="hidden" name="_subject" value="New feedback – Butterfly Effect website">
+        <input type="hidden" name="_template" value="table">
+        <div class="hp" aria-hidden="true"><input type="text" name="_honey" tabindex="-1" autocomplete="off"></div>
+        <div class="full">
+          <h3 style="font-size:22px"><span class="en">Attended a session? Share your feedback</span><span class="ar">حضرت معايا؟ قولّي رأيك</span></h3>
+          <p class="form-note"><span class="en">It goes straight to Asmaa’s email.</span><span class="ar">رأيك هيوصل على إيميل أسماء مباشرة.</span></p>
+        </div>
+        <fieldset class="full">
+          <legend><span class="en">Your rating</span><span class="ar">تقييمك</span></legend>
+          <div class="rate">
+            <input type="radio" id="r5" name="rating" value="5"><label for="r5" aria-label="5"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 7 7 .6-5.3 4.6 1.6 7.3L12 17.8 5.7 21.5l1.6-7.3L2 9.6 9 9z"/></svg></label>
+            <input type="radio" id="r4" name="rating" value="4"><label for="r4" aria-label="4"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 7 7 .6-5.3 4.6 1.6 7.3L12 17.8 5.7 21.5l1.6-7.3L2 9.6 9 9z"/></svg></label>
+            <input type="radio" id="r3" name="rating" value="3"><label for="r3" aria-label="3"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 7 7 .6-5.3 4.6 1.6 7.3L12 17.8 5.7 21.5l1.6-7.3L2 9.6 9 9z"/></svg></label>
+            <input type="radio" id="r2" name="rating" value="2"><label for="r2" aria-label="2"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 7 7 .6-5.3 4.6 1.6 7.3L12 17.8 5.7 21.5l1.6-7.3L2 9.6 9 9z"/></svg></label>
+            <input type="radio" id="r1" name="rating" value="1"><label for="r1" aria-label="1"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 7 7 .6-5.3 4.6 1.6 7.3L12 17.8 5.7 21.5l1.6-7.3L2 9.6 9 9z"/></svg></label>
+          </div>
+        </fieldset>
+        <div class="field"><label for="fbName"><span class="en">Your name</span><span class="ar">اسمك</span></label><input id="fbName" name="name" autocomplete="name"></div>
+        <div class="field"><label for="fbEmail"><span class="en">Email</span><span class="ar">الإيميل</span> <span class="opt">(<span class="en">optional</span><span class="ar">اختياري</span>)</span></label><input id="fbEmail" name="email" type="email" autocomplete="email" dir="ltr"></div>
+        <div class="field full"><label for="fbProg"><span class="en">What did you attend?</span><span class="ar">حضرت إيه؟</span></label><input id="fbProg" name="attended" data-ph-en="e.g. Hemaya life skills, DEPI, a coaching session" data-ph-ar="مثلًا: مهارات حياتية في حماية، رواد مصر الرقمية، جلسة كوتشينج"></div>
+        <div class="field full"><label for="fbMsg"><span class="en">Your honest feedback</span><span class="ar">رأيك بصراحة</span></label><textarea id="fbMsg" name="feedback" data-ph-en="What made the biggest difference for you?" data-ph-ar="إيه أكتر حاجة فرقت معاك؟"></textarea></div>
+        <label class="full" style="display:flex;gap:10px;align-items:center;font-weight:400;color:var(--muted)"><input type="checkbox" name="publish_consent" value="yes" style="width:22px;min-height:22px;height:22px;accent-color:#5f4b8d"> <span><span class="en">I agree to have my feedback published on the website</span><span class="ar">موافق إن رأيي يتنشر على الموقع</span></span></label>
+        <p class="error full" hidden role="alert"></p>
+        <button type="submit" class="btn btn-ink full"><span class="en">Send feedback</span><span class="ar">ابعت رأيك</span></button>
+        <p class="sent full" hidden role="status"><span class="en">Thank you! Your feedback was sent. If a confirmation page opened, please complete it.</span><span class="ar">شكرًا! رأيك اتبعت. لو اتفتحت صفحة تأكيد كمّلها.</span></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK / CONTACT -->
+<section id="book">
+  <div class="wrap book-grid">
+    <div>
+      <span class="kicker"><span class="en">Contact</span><span class="ar">تواصل</span></span>
+      <h2><span class="en">Let’s start with one small moment</span><span class="ar">خلّينا نبدأ بلحظة صغيرة</span></h2>
+      <p class="lead" style="margin-top:14px"><span class="en">Open to partnerships and roles in learning design, curriculum development, facilitation, training and career coaching, especially for youth leadership and education programs.</span><span class="ar">مفتوحة للشراكات والأدوار في تصميم التعلّم والمناهج والتيسير والتدريب والكوتشينج المهني، خصوصًا في برامج القيادة الشبابية والتعليم.</span></p>
+      <div class="quick">
+        <div class="quick-card main">
+          <div class="qi"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
+          <div><b><span class="en">Request a session</span><span class="ar">اطلب جلسة</span></b><span><span class="en">Tell me what you need and I will reply with available times.</span><span class="ar">قولّي محتاج إيه وهرد عليك بالمواعيد المتاحة.</span></span></div>
+          <a href="#book" class="btn btn-gold" data-cal="session" data-plan-en="Coaching / consulting session" data-plan-ar="جلسة كوتشينج / استشارة" target="_blank" rel="noopener"><span class="en">Request a session</span><span class="ar">اطلب جلسة</span></a>
+        </div>
+        <div class="quick-card">
+          <div class="qi"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
+          <div><b><span class="en">Send a request by email, with an attachment</span><span class="ar">ابعت طلبك بالإيميل ومعاه ملف</span></b><span><span class="en">Projects, ToR, interviews or lives: fill in the form and attach any file (brief, ToR, CV…).</span><span class="ar">مشروع، شروط مرجعية، مقابلة أو لايف: املا النموذج وارفع أي ملف (برييف، ToR، سيرة ذاتية…).</span></span></div>
+        </div>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:asmaatareq91@gmail.com"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><bdi>asmaatareq91@gmail.com</bdi></a>
+        <a href="https://www.linkedin.com/in/asmaatarek/" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21h-4z"/></svg>LinkedIn</a>
+      </div>
+    </div>
+
+    <form class="fpanel mailform" id="bookForm" action="https://formsubmit.co/asmaatareq91@gmail.com" method="POST" enctype="multipart/form-data" target="_blank" novalidate>
+      <input type="hidden" name="_subject" id="bkSubject" value="New request – Butterfly Effect website">
+      <input type="hidden" name="_template" value="table">
+      <div class="hp" aria-hidden="true"><input type="text" name="_honey" tabindex="-1" autocomplete="off"></div>
+      <fieldset class="full">
+        <legend><span class="en">Request type</span><span class="ar">نوع الطلب</span></legend>
+        <div class="types">
+          <label class="type"><input type="radio" name="request_type" value="Consulting / coaching" checked><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span class="en">Consulting</span><span class="ar">استشارة</span></span></label>
+          <label class="type"><input type="radio" name="request_type" value="Media interview"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg><span class="en">Interview</span><span class="ar">مقابلة</span></span></label>
+          <label class="type"><input type="radio" name="request_type" value="Joint live"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3z"/></svg><span class="en">Live</span><span class="ar">لايف</span></span></label>
+          <label class="type"><input type="radio" name="request_type" value="Training / learning design project"><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 5h18v11H3z"/><path d="M8 21h8M12 16v5"/></svg><span class="en">Project</span><span class="ar">مشروع</span></span></label>
+        </div>
+      </fieldset>
+      <div class="field"><label for="fName"><span class="en">Name</span><span class="ar">الاسم</span></label><input id="fName" name="name" autocomplete="name" required></div>
+      <div class="field"><label for="fEmail"><span class="en">Your email</span><span class="ar">إيميلك</span></label><input id="fEmail" name="email" type="email" autocomplete="email" dir="ltr" required></div>
+      <div class="field"><label for="fOrg"><span class="en">Organization / platform</span><span class="ar">الجهة / المنصة</span> <span class="opt">(<span class="en">optional</span><span class="ar">اختياري</span>)</span></label><input id="fOrg" name="organization" autocomplete="organization"></div>
+      <div class="field"><label for="fPhone"><span class="en">Mobile</span><span class="ar">الموبايل</span> <span class="opt">(<span class="en">optional</span><span class="ar">اختياري</span>)</span></label><input id="fPhone" name="phone" type="tel" autocomplete="tel" dir="ltr"></div>
+      <div class="field full"><label for="fMsg"><span class="en">Tell me about your request</span><span class="ar">احكيلي عن طلبك</span></label><textarea id="fMsg" name="message" required data-ph-en="e.g. We need a curriculum for a youth program, or we’d like to host a live about…" data-ph-ar="مثلًا: محتاجين منهج لبرنامج شباب، أو عايزين نعمل لايف عن…"></textarea></div>
+      <div class="field full">
+        <label for="fFile"><span class="en">Attachment</span><span class="ar">مرفق</span> <span class="opt">(<span class="en">optional · PDF, Word, PowerPoint, Excel or image · up to 10 MB</span><span class="ar">اختياري · PDF أو Word أو PowerPoint أو Excel أو صورة · لحد 10 ميجا</span>)</span></label>
+        <input id="fFile" name="attachment" type="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.jpg,.jpeg,.png">
+      </div>
+      <p class="error full" hidden role="alert"></p>
+      <button type="submit" class="btn btn-ink full"><span class="en">Send by email</span><span class="ar">ابعت بالإيميل</span></button>
+      <p class="sent full" hidden role="status"><span class="en">Sent! Your request is on its way to Asmaa’s inbox. If a confirmation page opened, please complete it.</span><span class="ar">اتبعت! طلبك في الطريق لإيميل أسماء. لو اتفتحت صفحة تأكيد كمّلها.</span></p>
+      <p class="form-note full"><span class="en">Prefer your own email app? Write to</span><span class="ar">تحب تبعت من الإيميل بتاعك؟ ابعت على</span> <a href="mailto:asmaatareq91@gmail.com"><bdi>asmaatareq91@gmail.com</bdi></a></p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Image">
+  <button type="button" class="lb-close" id="lbClose" aria-label="Close"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <img id="lbImg" alt="">
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <img class="footlogo" src="media/brand/logo-full.png" alt="Asmaa Tarek | Butterfly Effect">
+        <p class="slogan"><span class="en">Small learning moments create deep impact</span><span class="ar">لحظات تعلّم صغيرة تصنع أثرًا عميقًا</span></p>
+      </div>
+      <div>
+        <h3><span class="en">Explore</span><span class="ar">تصفّح</span></h3>
+        <ul>
+          <li><a href="#about"><span class="en">About</span><span class="ar">عنّي</span></a></li>
+          <li><a href="#services"><span class="en">Services</span><span class="ar">الخدمات</span></a></li>
+          <li><a href="#work"><span class="en">Selected work</span><span class="ar">أعمال مختارة</span></a></li>
+          <li><a href="#feedback"><span class="en">Feedback</span><span class="ar">آراء الناس</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <h3><span class="en">Contact</span><span class="ar">تواصل</span></h3>
+        <ul>
+          <li><a href="mailto:asmaatareq91@gmail.com"><bdi>asmaatareq91@gmail.com</bdi></a></li>
+          <li><a href="https://www.linkedin.com/in/asmaatarek/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><span class="en">Cairo, Egypt</span><span class="ar">القاهرة، مصر</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy"><span>© <span id="yr"></span> <span class="en">Asmaa Tarek · Butterfly Effect</span><span class="ar">أسماء طارق · أثر الفراشة</span></span><span><span class="en">Human-centered learning that turns education into action.</span><span class="ar">تعلّم محوره الإنسان، بيحوّل التعليم لفعل.</span></span></div>
+  </div>
+</footer>
+
+<script>
+// ===== Settings =====
+const CALENDLY = {
+  intro:   "",   // 20-min intro call  — e.g. https://calendly.com/USERNAME/intro
+  session: ""    // 60-min coaching/consulting — e.g. https://calendly.com/USERNAME/coaching
+};
+const root = document.documentElement;
+const L = () => root.lang === 'ar' ? 'ar' : 'en';
+
+// ----- language -----
+function wireLinks(){
+  document.querySelectorAll('[data-cal]').forEach(el => {
+    const url = CALENDLY[el.dataset.cal];
+    if (url) { el.href = url; el.target = '_blank'; }
+    else { el.href = '#book'; el.removeAttribute('target'); }
+  });
+}
+// until Calendly links are added, "Book a time" buttons open the email form pre-filled
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-cal]');
+  if (!el || CALENDLY[el.dataset.cal]) return;
+  const plan = el.dataset['plan' + (L() === 'ar' ? 'Ar' : 'En')];
+  const r = document.querySelector('#bookForm input[name="request_type"][value="Consulting / coaching"]');
+  if (r) r.checked = true;
+  if (plan) document.getElementById('fMsg').value = (L() === 'ar' ? 'عايز أحجز: ' : 'I would like to book: ') + plan + '\n' + (L() === 'ar' ? 'المواعيد المناسبة ليا: ' : 'Times that suit me: ');
+});
+function setLang(l, save){
+  root.lang = l; root.dir = l === 'ar' ? 'rtl' : 'ltr';
+  document.title = l === 'ar' ? 'أسماء طارق | أثر الفراشة' : 'Asmaa Tarek | Butterfly Effect';
+  document.querySelectorAll('[data-ph-en]').forEach(el => el.placeholder = el.dataset['ph' + (l === 'ar' ? 'Ar' : 'En')]);
+  wireLinks();
+  if (save) { try { localStorage.setItem('lang', l); } catch(e){} }
+}
+let initial = 'en';
+try { const s = localStorage.getItem('lang'); if (s === 'ar' || s === 'en') initial = s; } catch(e){}
+if (location.hash === '#ar') initial = 'ar';
+setLang(initial, false);
+document.getElementById('langBtn').addEventListener('click', () => setLang(L() === 'ar' ? 'en' : 'ar', true));
+
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// ----- menu -----
+const menuBtn = document.getElementById('menuBtn'), navLinks = document.getElementById('navLinks');
+menuBtn.addEventListener('click', () => { const o = navLinks.classList.toggle('open'); menuBtn.setAttribute('aria-expanded', o); });
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { navLinks.classList.remove('open'); menuBtn.setAttribute('aria-expanded', false); }));
+
+// ----- filters -----
+function setupFilter(attr, sel, itemAttr, emptyEl){
+  const btns = document.querySelectorAll('[' + attr + ']');
+  btns.forEach(b => b.addEventListener('click', () => {
+    btns.forEach(x => x.setAttribute('aria-pressed', x === b));
+    const v = b.getAttribute(attr); let n = 0;
+    document.querySelectorAll(sel).forEach(it => { const ok = v === 'all' || it.getAttribute(itemAttr) === v; it.hidden = !ok; if (ok) n++; });
+    if (emptyEl) emptyEl.hidden = n > 0;
+  }));
+}
+setupFilter('data-filter', '.project', 'data-cat');
+setupFilter('data-ev', '.event', 'data-kind', document.getElementById('evEmpty'));
+
+// ----- prefill booking form -----
+const bookForm = document.getElementById('bookForm');
+const typeMap = {consult:'Consulting / coaching', interview:'Media interview', live:'Joint live', training:'Training / learning design project'};
+document.querySelectorAll('[data-type]').forEach(el => el.addEventListener('click', () => {
+  const r = bookForm.querySelector('input[name="request_type"][value="' + typeMap[el.dataset.type] + '"]');
+  if (r) r.checked = true;
+  const plan = el.dataset['plan' + (L() === 'ar' ? 'Ar' : 'En')];
+  if (plan) document.getElementById('fMsg').value = (L() === 'ar' ? 'بخصوص: ' : 'Regarding: ') + plan + '\n';
+}));
+
+// ----- email forms (FormSubmit) -----
+const MAX = 10 * 1024 * 1024;
+document.querySelectorAll('form.mailform').forEach(f => {
+  const err = f.querySelector('.error'), sent = f.querySelector('.sent');
+  f.addEventListener('submit', e => {
+    const ar = L() === 'ar'; let msg = '';
+    if (f.id === 'bookForm') {
+      const name = f.elements['name'].value.trim(), email = f.elements['email'].value.trim(), text = f.message.value.trim();
+      const file = f.attachment.files[0];
+      if (!name || !email || !text) msg = ar ? 'من فضلك اكتب اسمك وإيميلك وتفاصيل طلبك.' : 'Please enter your name, email and request details.';
+      else if (!f.elements['email'].checkValidity()) msg = ar ? 'الإيميل مش مكتوب صح.' : 'Please enter a valid email address.';
+      else if (file && file.size > MAX) msg = ar ? 'حجم الملف أكبر من 10 ميجا.' : 'The attachment is larger than 10 MB.';
+      const t = f.querySelector('input[name="request_type"]:checked').value;
+      document.getElementById('bkSubject').value = t + ' – ' + (name || 'website') + ' | Butterfly Effect website';
+    } else {
+      if (!f.querySelector('input[name="rating"]:checked') || !f.feedback.value.trim()) msg = ar ? 'اختار تقييم واكتب رأيك الأول.' : 'Please choose a rating and write your feedback first.';
+      else if (f.elements['email'].value && !f.elements['email'].checkValidity()) msg = ar ? 'الإيميل مش مكتوب صح.' : 'Please enter a valid email address.';
+    }
+    if (msg) { e.preventDefault(); err.textContent = msg; err.hidden = false; sent.hidden = true; return; }
+    err.hidden = true;
+    setTimeout(() => { sent.hidden = false; f.reset(); }, 400);
+  });
+});
+
+// ----- lightbox -----
+const lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg');
+let lastFocus = null;
+document.querySelectorAll('.gi').forEach(b => b.addEventListener('click', () => {
+  lastFocus = b; lbImg.src = b.dataset.full; lbImg.alt = b.querySelector('img').alt; lb.hidden = false; document.getElementById('lbClose').focus();
+}));
+function closeLb(){ lb.hidden = true; lbImg.src = ''; if (lastFocus) lastFocus.focus(); }
+document.getElementById('lbClose').addEventListener('click', closeLb);
+lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+lb.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+</script>
+</body>
+</html>
