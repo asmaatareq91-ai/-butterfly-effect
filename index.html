@@ -288,7 +288,10 @@ fieldset{border:0;padding:0;margin:0}
 .types{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:8px}
 .type input,.rate input{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;min-height:0;padding:0;border:0}
 .type > span{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;min-height:88px;justify-content:center;padding:10px;border:1.5px solid var(--line);border-radius:14px;font-size:14px;font-weight:500;cursor:pointer;background:var(--paper);color:var(--muted)}
-.type input:checked + span{border-color:var(--purple);background:var(--purple-soft);color:var(--ink)}
+.type > span{user-select:none;-webkit-user-select:none;position:relative;transition:transform .15s,box-shadow .15s,border-color .15s,background .15s}
+.type:hover > span{border-color:var(--gold);transform:translateY(-2px)}
+.type input:checked + span{border-color:var(--gold);background:var(--ink);color:#fff;font-weight:700;box-shadow:0 8px 20px rgba(43,32,70,.22)}
+.type input:checked + span::after{content:"✓";position:absolute;top:6px;inset-inline-end:8px;font-size:13px;color:var(--gold)}
 .type input:focus-visible + span{outline:3px solid var(--gold);outline-offset:2px}
 .rate{display:flex;flex-direction:row-reverse;justify-content:flex-end;gap:2px}
 .rate label{cursor:pointer;color:#d5cce3;width:44px;height:44px;display:flex;align-items:center;justify-content:center}
@@ -401,6 +404,27 @@ html[lang="ar"] .hv-title,html[lang="ar"] .hv-school{direction:ltr;text-align:ri
 .hero .creds-mini b{color:#a51c30}
 .hero .creds-mini:hover{border-color:var(--gold)}
 @media (max-width:960px){.hv-grid{grid-template-columns:1fr;padding:20px;gap:24px}}
+
+/* booking jump */
+#book{scroll-margin-top:84px}
+@keyframes flashForm{0%,100%{box-shadow:0 0 0 0 rgba(216,174,69,0)}25%,70%{box-shadow:0 0 0 7px rgba(216,174,69,.6)}}
+form.fpanel.flash{animation:flashForm 2s ease-out}
+@media (prefers-reduced-motion:reduce){form.fpanel.flash{animation:none;outline:3px solid var(--gold)}}
+
+/* stories */
+.p-story{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:start;margin:6px 0 4px}
+.p-story .p-desc{margin:0 0 12px;max-width:none}
+.pull{margin:0;background:var(--ink);color:#fff;border-radius:18px;padding:26px;font-family:var(--display);font-size:clamp(19px,2vw,24px);line-height:1.6}
+.pull small{display:block;margin-top:14px;font-family:var(--body);font-size:14px;color:var(--gold)}
+.ripple-line{margin:16px 0 4px;padding:14px 18px;background:var(--gold-soft);border-radius:14px;font-family:var(--display);font-size:clamp(17px,1.9vw,21px);color:var(--ink);display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center}
+.p-sub-h{font-family:var(--display);font-size:20px;margin:22px 0 4px}
+.p-list{list-style:none;margin:12px 0 22px;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px 28px}
+.p-list li{padding-inline-start:24px;position:relative;font-size:15px}
+.p-list li::before{content:"";position:absolute;inset-inline-start:0;top:.55em;width:10px;height:10px;border-radius:50%;border:2.5px solid var(--gold)}
+.skills-block{margin-top:56px}
+.skills-block h3.sk{font-size:clamp(24px,3vw,32px)}
+.skills-block .chips{margin-top:18px}
+@media (max-width:960px){.p-story{grid-template-columns:1fr}.p-list{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -517,7 +541,7 @@ html[lang="ar"] .hv-title,html[lang="ar"] .hv-school{direction:ltr;text-align:ri
       <p class="hv-date"><span class="en">August 30 – December 17, 2021</span><span class="ar">30 أغسطس – 17 ديسمبر 2021</span></p>
       <p class="hv-desc"><span class="en">A Harvard Kennedy School program on using story to lead and move people to act, the same thread that runs through Asmaa’s work: turning small learning moments into collective action.</span><span class="ar">برنامج من كلية كينيدي بجامعة هارفارد عن استخدام القصة في القيادة وتحريك الناس للفعل، ونفس الخيط ده ماشي في شغل أسماء كله: إنها تحوّل لحظات التعلّم الصغيرة لفعل جماعي.</span></p>
       <div class="hv-actions">
-        <a class="btn btn-gold" href="https://cecredential-validation.tlt.harvard.edu/" target="_blank" rel="noopener"><span class="en">Verify on Harvard’s site</span><span class="ar">اتأكد منها على موقع هارفارد</span></a>
+        
         <span class="hv-id"><span class="en">Credential ID</span><span class="ar">رقم الشهادة</span> <bdi>21PI-1164-ANDB</bdi></span>
       </div>
     </div>
@@ -623,10 +647,47 @@ html[lang="ar"] .hv-title,html[lang="ar"] .hv-school{direction:ltr;text-align:ri
           <li><strong><span class="en">One-to-one career coaching</span><span class="ar">كوتشينج مهني فردي</span></strong><span><span class="en">Clarity on direction, a career plan and interview preparation.</span><span class="ar">وضوح في الاتجاه، وخطة مهنية، وتحضير للمقابلات.</span></span></li>
           <li><strong><span class="en">Job search club</span><span class="ar">نادي البحث عن وظيفة</span></strong><span><span class="en">CVs, LinkedIn, applications, negotiation and mock interviews.</span><span class="ar">السيرة الذاتية، ولينكدإن، والتقديم، والتفاوض، ومحاكاة المقابلات.</span></span></li>
           <li><strong><span class="en">Life skills &amp; emotional intelligence workshops</span><span class="ar">ورش المهارات الحياتية والذكاء العاطفي</span></strong><span><span class="en">Self-discovery, communication, time management and confidence.</span><span class="ar">اكتشاف الذات، والتواصل، وإدارة الوقت، والثقة بالنفس.</span></span></li>
-          <li><strong><span class="en">Freelancing &amp; digital skills</span><span class="ar">العمل الحر والمهارات الرقمية</span></strong><span><span class="en">From writing proposals to managing money and building a lasting freelance career.</span><span class="ar">من كتابة العروض لإدارة الفلوس وبناء مسار عمل حر مستدام.</span></span></li>
+          <li><strong><span class="en">Freelancing &amp; digital skills</span><span class="ar">العمل الحر والمهارات الرقمية</span></strong><span><span class="en">From proposals and money management to AI tools and a lasting freelance career.</span><span class="ar">من كتابة العروض وإدارة الفلوس لحد أدوات الذكاء الاصطناعي وبناء مسار عمل حر مستدام.</span></span></li>
         </ul>
         <a href="#consult" class="btn btn-line"><span class="en">See coaching sessions</span><span class="ar">شوف جلسات الكوتشينج</span></a>
       </div>
+    </div>
+    <div class="skills-block">
+      <h3 class="sk"><span class="en">Skills for the digital era</span><span class="ar">مهارات لعصر التكنولوجيا</span></h3>
+      <p class="lead" style="margin:10px 0 24px"><span class="en">In three programs I built the skills young people need to work in a technology-driven market, including smart use of AI.</span><span class="ar">في 3 برامج بنيت المهارات اللي الشباب محتاجينها عشان يشتغلوا في سوق بيتحرك بالتكنولوجيا، ومنها الاستخدام الذكي للذكاء الاصطناعي.</span></p>
+      <div class="grid">
+        <article class="card">
+          <span class="tag"><span class="en">Employability · Soft skills</span><span class="ar">التوظيف · مهارات ناعمة</span></span>
+          <h4>DEPI · EYouth</h4>
+          <p class="who"><span class="en">Master Trainer &amp; Coach · 2023–present</span><span class="ar">ماستر ترينر وكوتش · 2023 حتى الآن</span></p>
+          <p class="t"><span class="en">Soft skills, career readiness and freelancing sessions for young people, plus a training of trainers and coaching for technical coaches.</span><span class="ar">جلسات مهارات ناعمة وجاهزية مهنية وعمل حر للشباب، وتدريب مدربين وكوتشينج للمدربين التقنيين.</span></p>
+          <p class="fig"><span class="en"><bdi>1,500+</bdi> youth · 500 training hours</span><span class="ar"><bdi>1,500+</bdi> شاب وشابة · 500 ساعة تدريب</span></p>
+        </article>
+        <article class="card">
+          <span class="tag"><span class="en">Freelancing · AI</span><span class="ar">العمل الحر · الذكاء الاصطناعي</span></span>
+          <h4>ITIDA Gigs</h4>
+          <p class="who"><span class="en">Freelance Trainer · Jun–Aug 2025</span><span class="ar">مدربة حرة · يونيو–أغسطس 2025</span></p>
+          <p class="t"><span class="en">A 3-month program on digital freelancing, proposal writing, LinkedIn, negotiation, financial management and AI for freelancing, with mock proposals and hands-on guidance.</span><span class="ar">برنامج 3 شهور عن العمل الحر الرقمي وكتابة العروض ولينكدإن والتفاوض والإدارة المالية والذكاء الاصطناعي للعمل الحر، بعروض تجريبية وتوجيه عملي.</span></p>
+          <p class="fig"><span class="en">~1,000 students · 12 webinars</span><span class="ar">~1,000 طالب · 12 ويبينار</span></p>
+        </article>
+        <article class="card">
+          <span class="tag"><span class="en">Coaching · Online</span><span class="ar">كوتشينج · أونلاين</span></span>
+          <h4><span class="en">Mahara Program · UAE</span><span class="ar">برنامج مهارة · الإمارات</span></h4>
+          <p class="who"><span class="en">Freelance Trainer &amp; Career Coach · Dec 2024–May 2025</span><span class="ar">مدربة وكوتش مهني · ديسمبر 2024–مايو 2025</span></p>
+          <p class="t"><span class="en">Online training and coaching that helped Emirati youth build freelancing and digital skills.</span><span class="ar">تدريب وكوتشينج أونلاين ساعد الشباب الإماراتي على بناء مهارات العمل الحر والمهارات الرقمية.</span></p>
+          <p class="fig"><span class="en">10 sessions · <bdi>120+</bdi> coaching hours</span><span class="ar">10 جلسات · <bdi>120+</bdi> ساعة كوتشينج</span></p>
+        </article>
+      </div>
+      <ul class="chips">
+        <li><span class="en">AI for freelancing</span><span class="ar">الذكاء الاصطناعي للعمل الحر</span></li>
+        <li><span class="en">Digital freelancing</span><span class="ar">العمل الحر الرقمي</span></li>
+        <li><span class="en">LinkedIn for freelancers</span><span class="ar">لينكدإن للمستقلين</span></li>
+        <li><span class="en">Proposal writing</span><span class="ar">كتابة العروض</span></li>
+        <li><span class="en">Negotiation</span><span class="ar">التفاوض</span></li>
+        <li><span class="en">Financial management</span><span class="ar">الإدارة المالية</span></li>
+        <li><span class="en">Job search &amp; career readiness</span><span class="ar">البحث عن وظيفة والجاهزية المهنية</span></li>
+        <li><span class="en">Soft skills</span><span class="ar">المهارات الناعمة</span></li>
+      </ul>
     </div>
     <div class="principles">
       <div>
@@ -664,6 +725,7 @@ html[lang="ar"] .hv-title,html[lang="ar"] .hv-school{direction:ltr;text-align:ri
         <button class="chip" aria-pressed="true" data-filter="all"><span class="en">All</span><span class="ar">الكل</span></button>
         <button class="chip" aria-pressed="false" data-filter="hemaya"><span class="en">Hemaya · Tdh</span><span class="ar">حماية · Tdh</span></button>
         <button class="chip" aria-pressed="false" data-filter="depi"><span class="en">Digital Egypt Pioneers</span><span class="ar">رواد مصر الرقمية</span></button>
+        <button class="chip" aria-pressed="false" data-filter="unify"><span class="en">UNIFY · UNESCO</span><span class="ar">الاندماج المجتمعي · اليونسكو</span></button>
         <button class="chip" aria-pressed="false" data-filter="ruwwad"><span class="en">Ruwwad</span><span class="ar">رواد التنمية</span></button>
       </div>
     </div>
@@ -677,12 +739,13 @@ html[lang="ar"] .hv-title,html[lang="ar"] .hv-school{direction:ltr;text-align:ri
         </div>
         <span class="p-role"><span class="en">Technical Officer</span><span class="ar">مسؤولة تقنية</span></span>
       </header>
-      <p class="p-desc"><span class="en">Designed and delivered capacity-building learning journeys that moved young people, including refugees and migrants, from learning to action through life skills, leadership and civic engagement programs. Built strategic partnerships and managed training delivery, procurement, data analysis and reporting, using participatory, mentoring and reflection-based methods.</span><span class="ar">صمّمت ونفّذت رحلات بناء قدرات بتنقل الشباب، ومنهم لاجئين ومهاجرين، من التعلّم للفعل، من خلال برامج المهارات الحياتية والقيادة والمشاركة المدنية. وبنيت شراكات استراتيجية، وأدرت تنفيذ التدريب والمشتريات وتحليل البيانات والتقارير، بمنهجيات تشاركية قائمة على الإرشاد والتأمل.</span></p>
+      <p class="p-desc"><span class="en">Designed and delivered capacity-building learning journeys that moved young people, including refugees and migrants, from learning to action through life skills, leadership and civic engagement programs. Built strategic partnerships and managed training delivery, procurement, data analysis and reporting, using participatory, mentoring and reflection-based methods. Over three years I worked with more than 1,000 young people from about 15 nationalities in the refugee sector, including 10 African nationalities living in host communities in Egypt.</span><span class="ar">صمّمت ونفّذت رحلات بناء قدرات بتنقل الشباب، ومنهم لاجئين ومهاجرين، من التعلّم للفعل، من خلال برامج المهارات الحياتية والقيادة والمشاركة المدنية. وبنيت شراكات استراتيجية، وأدرت تنفيذ التدريب والمشتريات وتحليل البيانات والتقارير، بمنهجيات تشاركية قائمة على الإرشاد والتأمل. وعلى مدار ثلاث سنين اشتغلت مع أكتر من 1,000 شاب وشابة من حوالي 15 جنسية في قطاع العمل مع اللاجئين، منهم 10 جنسيات من القارة الأفريقية مقيمين في المجتمع المضيف في مصر.</span></p>
       <ul class="p-figs">
         <li><b><bdi>900+</bdi></b><span class="en">youth trained &amp; mentored</span><span class="ar">شاب وشابة اتدربوا</span></li>
         <li><b>90</b><span class="en">community initiatives</span><span class="ar">مبادرة مجتمعية</span></li>
         <li><b>5</b><span class="en">training manuals</span><span class="ar">أدلة تدريبية</span></li>
         <li><b>6</b><span class="en">strategic partnerships (4 with tech leaders)</span><span class="ar">شراكات استراتيجية (4 مع شركات تكنولوجيا)</span></li>
+        <li><b>10</b><span class="en">African nationalities in the host community</span><span class="ar">جنسيات أفريقية في المجتمع المضيف</span></li>
       </ul>
       <div class="p-media">
         <div class="p-video">
@@ -722,21 +785,64 @@ html[lang="ar"] .hv-title,html[lang="ar"] .hv-school{direction:ltr;text-align:ri
       </div>
     </article>
 
+    <article class="project" data-cat="unify">
+      <header class="p-head">
+        <div>
+          <div class="p-org"><span class="en">Agent for SDGs · funded by UNESCO</span><span class="ar">Agent for SDGs · بتمويل من اليونسكو</span></div>
+          <h3><span class="en">UNIFY: Community Integration Project</span><span class="ar">مشروع الاندماج المجتمعي (UNIFY)</span></h3>
+          <div class="p-sub"><span class="en">Youth empowerment and social cohesion · 2025</span><span class="ar">تمكين الشباب والتماسك الاجتماعي · 2025</span></div>
+        </div>
+        <span class="p-role"><span class="en">Project Manager</span><span class="ar">مديرة المشروع</span></span>
+      </header>
+      <div class="p-story">
+        <div>
+          <p class="p-desc"><span class="en">When I asked the young people what a “refugee” means, their answers had nothing to do with legal or academic definitions. They said: a friend who solves my problem and helps me, someone who protects me and makes me belong, someone who keeps me safe and cares for me, the embrace of someone who believes in me. That became the meaning closest to my heart.</span><span class="ar">لما سألت الشباب «يعني إيه لاجئ؟»، إجاباتهم كانت بعيدة تمامًا عن أي تعريف قانوني أو أكاديمي. قالوا: «صديق يحل مشكلتي ويساعدني، يعني أحتمي، يعني أنتمي، يعني حد يأمن عليّ ويرعاني، حضن من يؤمن بي». ومن يومها بقى ده المعنى الأقرب لقلبي.</span></p>
+          <p class="p-desc"><span class="en">My role went beyond managing a project, following activities or mentoring initiatives. My first goal was for the young people to truly live community integration: to experience peaceful coexistence and find a space that brings them together with all their differences, where they work, learn from and respect each other, even through food that speaks for all of us and is made with love.</span><span class="ar">دوري ما كانش مجرد مديرة مشروع، ولا متابعة أنشطة أو إرشاد للمبادرات. كان هدفي الأول إن الشباب يعيشوا فعلًا معنى الاندماج المجتمعي، ويختبروا التعايش السلمي، ويلاقوا مساحة تجمعهم بكل اختلافاتهم، يشتغلوا فيها مع بعض ويتعلموا من بعض ويحترموا بعض، لحد الأكل اللي بيعبّر عننا كلنا ومعمول بحب.</span></p>
+          <p class="p-desc"><span class="en">In the community initiatives track we started with 9 initiatives and reached about 500 beneficiaries, children, adolescents, youth and older people, on digital empowerment, disability and social integration, and on how young people in host communities can reach information about the services available to them through a network of relationships. In the storytelling track, the young people produced about 24 videos, each telling their own story or the story of another young person facing the same challenges, to build a support network and solve problems faster and more creatively.</span><span class="ar">في مساق المبادرات المجتمعية بدأنا بـ 9 مبادرات ووصلنا مع بعض لحوالي 500 مستفيد من أطفال ومراهقين وشباب وكبار سن، في موضوعات زي التمكين الرقمي والإعاقة والاندماج المجتمعي، وإزاي الشباب في المجتمعات المضيفة يوصلوا لمعلومات الخدمات المتاحة لهم من خلال شبكة علاقات تربطهم بالخدمات. وفي مساق رواية القصة أنتج الشباب حوالي 24 فيديو، حكى كل واحد فيهم قصته أو قصة شاب تاني بيواجه نفس التحديات، لتكوين شبكة دعم وحل المشكلات بشكل أسرع وأكتر إبداعًا.</span></p>
+        </div>
+        <blockquote class="pull"><span class="en">Success was never the number of initiatives or beneficiaries. It was watching every team help the others succeed, until they became one big family.</span><span class="ar">النجاح الحقيقي ما كانش عدد المبادرات ولا عدد المستفيدين. كان إن كل فريق بيساعد غيره عشان الكل ينجح، وكوّنوا عيلة كبيرة.</span><small><span class="en">From the graduation ceremony</span><span class="ar">من حفل التخرج</span></small></blockquote>
+      </div>
+      <div class="ripple-line"><span class="en">9 initiatives → about 500 beneficiaries · 45 young people → about 24 stories</span><span class="ar">9 مبادرات ← حوالي 500 مستفيد · 45 شابًا وشابة ← حوالي 24 قصة</span></div>
+      <ul class="p-figs">
+        <li><b>45</b><span class="en">young people selected and mentored</span><span class="ar">شاب وشابة اختيروا ووُجّهوا</span></li>
+        <li><b>9</b><span class="en">community initiatives</span><span class="ar">مبادرات مجتمعية</span></li>
+        <li><b>~500</b><span class="en">beneficiaries across all ages</span><span class="ar">مستفيد من كل الأعمار</span></li>
+        <li><b>~24</b><span class="en">digital stories produced</span><span class="ar">فيديو سرد رقمي</span></li>
+      </ul>
+    </article>
+
     <article class="project" data-cat="ruwwad">
       <header class="p-head">
         <div>
           <div class="p-org"><span class="en">Ruwwad for Development · Ruwwad Youth Community Center, Ezbet Khairallah</span><span class="ar">رواد التنمية · مركز رواد الشباب المجتمعي، عزبة خير الله</span></div>
-          <h3><span class="en">Children’s Winter &amp; Summer Camps and Clubs</span><span class="ar">معسكرات ونوادي الأطفال الشتوية والصيفية</span></h3>
-          <div class="p-sub"><span class="en">Child Development · Youth Empowerment · 2013–2023</span><span class="ar">تنمية الطفل · تمكين الشباب · 2013–2023</span></div>
+          <h3><span class="en">From a teenage dream to a community center</span><span class="ar">من حلم مراهقة لمركز مجتمعي</span></h3>
+          <div class="p-sub"><span class="en">Youth empowerment · Child development · Families · 2013–2023</span><span class="ar">تمكين الشباب · تنمية الطفل · الأسر · 2013–2023</span></div>
         </div>
         <span class="p-role"><span class="en">Child Development Head · Youth Co-founder</span><span class="ar">رئيسة برنامج تنمية الطفل · شريكة مؤسسة</span></span>
       </header>
-      <p class="p-desc"><span class="en">One of the youth who co-founded the Ruwwad Youth Community Center in Ezbet Khairallah, one of Cairo’s most marginalized areas, and led its child development program, including the winter and summer camps and children’s clubs. Directed budget, M&amp;E systems, annual planning and gender-transformative community engagement.</span><span class="ar">من الشباب اللي أسسوا مركز رواد الشباب المجتمعي في عزبة خير الله، واحدة من أكتر المناطق المهمّشة في القاهرة، وقُدت برنامج تنمية الطفل، ومنه المعسكرات الشتوية والصيفية ونوادي الأطفال. وأدرت الميزانية ونظم المتابعة والتقييم والتخطيط السنوي والمشاركة المجتمعية المراعية للنوع.</span></p>
+      <div class="p-story">
+        <div>
+          <p class="p-desc"><span class="en">Sixteen years ago, as a teenager, I was the only girl among six young men dreaming of a safe place where we could learn and serve our community in Ezbet Khairallah, Cairo’s second-largest informal settlement. We were turned away by one association after another, and many people left. The community saw my involvement as a waste of time for a girl: better to focus on my studies and get married. I believed that girls there, and everywhere like it, have the right to finish their education, grow and have a voice.</span><span class="ar">من 16 سنة، وأنا مراهقة، كنت البنت الوحيدة بين 6 شباب بنحلم بمكان آمن نتعلم فيه ونخدم مجتمعنا في عزبة خير الله، ثاني أكبر عشوائية في القاهرة. اتطردنا من جمعيات كتير، وناس كتير سابتنا. والمجتمع شاف اللي بعمله «عبث» لبنت، وقال «الأفضل تركزي في دراستك وتتجوزي». لكني كنت مؤمنة إن البنات في العزبة وفي أي مكان زيها من حقهم يكملوا تعليمهم ويطوّروا شخصياتهم ويبقى ليهم صوت.</span></p>
+          <p class="p-desc"><span class="en">In 2009, in a training on community study, the trainer described Ezbet Khairallah as hopeless, with no educated youth. A friend from our group and I stood up and said we were from the Ezba and that it was full of educated young people. We studied its resources and needs and found it rich in human, strategic and even tourism resources. We came out with four initiatives, and our bigger dream stayed alive: a safe place where we could all learn.</span><span class="ar">في 2009، في تدريب عن دراسة المجتمع، المدرب وصف عزبة خير الله بإنها مكان يائس مفيهوش شباب متعلم. قمت أنا وشاب من المجموعة وقلنا: إحنا من العزبة، وفيها شباب كتير متعلم. بدأنا دراسة الموارد والاحتياجات، وطلع إن العزبة غنية بمواردها البشرية والاستراتيجية وحتى السياحية. خرجنا بـ 4 مبادرات، وفضل حلمنا الأكبر: مكان آمن نتعلم فيه كلنا.</span></p>
+          <p class="p-desc"><span class="en">We knocked on many doors until Aramex Egypt (Fadi Ghandour) and Ruwwad Jordan (Samar Dudin) believed in us. Aramex funded us, Ruwwad supervised technically, and we officially began as one of Ruwwad’s branches in the Middle East. Over ten years I worked and mentored across all three groups: youth, children and families.</span><span class="ar">خبطنا أبواب كتير، لحد ما أرامكس مصر (فادي غندور) ورواد الأردن (سمر دودين) آمنوا بينا. أرامكس مولت، ورواد أشرفت فنيًا، وبدأنا رسميًا كأحد فروع رواد في الشرق الأوسط. وعلى مدار 10 سنين اشتغلت وأرشدت مع الفئات التلاتة: الشباب والأطفال والأسر.</span></p>
+        </div>
+        <blockquote class="pull"><span class="en">They told me to focus on my studies and get married. I made the impossible happen.</span><span class="ar">قالوا لي: «ركّزي في دراستك واتجوزي». لكني صنعتُ المستحيل.</span><small><span class="en">Asmaa Tarek, on the beginning</span><span class="ar">أسماء طارق، عن البداية</span></small></blockquote>
+      </div>
+      <div class="ripple-line"><span class="en">6 young people → 600 scholarships · <bdi>5,000+</bdi> children · 450 families</span><span class="ar">6 شباب ← 600 منحة تعليمية · <bdi>5,000+</bdi> طفل · 450 أسرة</span></div>
       <ul class="p-figs">
-        <li><b><bdi>5,000+</bdi></b><span class="en">children</span><span class="ar">طفل وطفلة</span></li>
-        <li><b><bdi>20+</bdi></b><span class="en">educational units</span><span class="ar">وحدة تعليمية</span></li>
-        <li><b>600</b><span class="en">volunteers managed</span><span class="ar">متطوع</span></li>
-        <li><b><bdi>25+</bdi></b><span class="en">partnerships</span><span class="ar">شراكة</span></li>
+        <li><b>600</b><span class="en">youth on fully funded two-year scholarships (8 volunteering hours a week)</span><span class="ar">شاب وشابة أخدوا منح كاملة لعامين (مقابل 8 ساعات تطوع أسبوعيًا)</span></li>
+        <li><b><bdi>5,000+</bdi></b><span class="en">children: academic support, arts and digital literacy</span><span class="ar">طفل: دعم أكاديمي وفنون ومحو أمية رقمية</span></li>
+        <li><b>450</b><span class="en">families: literacy and community initiatives</span><span class="ar">أسرة: محو أمية ومبادرات مجتمعية</span></li>
+        <li><b>25</b><span class="en">strategic partnerships for Ruwwad</span><span class="ar">شراكة استراتيجية لرواد</span></li>
+      </ul>
+      <h4 class="p-sub-h"><span class="en">What I designed and led</span><span class="ar">اللي صممته وقدته</span></h4>
+      <ul class="p-list">
+        <li><span class="en">20 winter and summer clubs, with learning content for children aged 5–16</span><span class="ar">20 نادي شتوي وصيفي، ومحتوى تعليمي لأطفال من 5 لـ 16 سنة</span></li>
+        <li><span class="en">25 learning units for different stages, delivered in schools, at Ruwwad and elsewhere</span><span class="ar">25 وحدة تعلّم لمختلف المراحل، ونفّذتها في المدارس وفي رواد وغيرهم</span></li>
+        <li><span class="en">A training manual for parents to follow their children’s growth and learning</span><span class="ar">مانوال تدريبي للأهالي لمتابعة نمو وتعلّم أطفالهم</span></li>
+        <li><span class="en">20 trainings a year: leadership, planning, facilitation, communication, documentation and understanding age stages</span><span class="ar">20 تدريب سنويًا: قيادة وتخطيط وتيسير وتواصل وتوثيق وفهم المراحل العمرية</span></li>
+        <li><span class="en">Mentoring 20 young people through the fellowship program to build a second line of leaders</span><span class="ar">توجيه 20 شاب وشابة عبر برنامج الزمالة لبناء صفوف تانية</span></li>
+        <li><span class="en">Ezbet Khairallah Theater: a free arts and entertainment space for children and youth, built with one of our partners after the adolescents in the child program asked for a place to express their talents</span><span class="ar">مسرح العزبة: مساحة فنية وترفيهية مجانية للأطفال والشباب، اتعملت مع إحدى شراكاتنا بعد ما المراهقين والمراهقات في برنامج الطفل طلبوا مساحة يعبّروا فيها عن مواهبهم</span></li>
       </ul>
       <div class="gallery g5">
         <button type="button" class="gi big" data-full="media/img/ruwwad-certificates.jpg" aria-label="Enlarge photo"><img src="media/img/ruwwad-certificates.jpg" alt="Program closing and certificates at Ruwwad" loading="lazy"></button>
@@ -745,6 +851,7 @@ html[lang="ar"] .hv-title,html[lang="ar"] .hv-school{direction:ltr;text-align:ri
         <button type="button" class="gi" data-full="media/img/ruwwad-profile.jpg" aria-label="Enlarge photo"><img src="media/img/ruwwad-profile.jpg" alt="Asmaa on Ruwwad’s youth empowerment team" loading="lazy"></button>
         <button type="button" class="gi" data-full="media/img/ruwwad-zoom.jpg" aria-label="Enlarge photo"><img src="media/img/ruwwad-zoom.jpg" alt="Online gathering with the Ruwwad team" loading="lazy"></button>
       </div>
+    
     </article>
 
     <div class="more-work">
@@ -765,18 +872,11 @@ html[lang="ar"] .hv-title,html[lang="ar"] .hv-school{direction:ltr;text-align:ri
           <p class="fig"><span class="en">32 sessions · 192 activities · 4 pillars</span><span class="ar">32 جلسة · 192 نشاط · 4 محاور</span></p>
         </article>
         <article class="card">
-          <span class="tag"><span class="en">Project management</span><span class="ar">إدارة مشروع</span></span>
-          <h4>UNIFY</h4>
-          <p class="who"><span class="en">Agent for SDGs · UNESCO grant · 2025</span><span class="ar">Agent for SDGs · منحة اليونسكو · 2025</span></p>
-          <p class="t"><span class="en">Managed a youth empowerment and social cohesion project with digital storytelling and youth-led initiative tracks, grounded in safeguarding, inclusion and Do No Harm.</span><span class="ar">إدارة مشروع لتمكين الشباب والتماسك الاجتماعي بمسارين: السرد الرقمي والمبادرات الشبابية، مع الحماية والدمج ومبدأ عدم الإضرار.</span></p>
-          <p class="fig"><span class="en">45 youth · 12+ videos · 9 initiatives</span><span class="ar">45 مشارك · +12 فيديو · 9 مبادرات</span></p>
-        </article>
-        <article class="card">
           <span class="tag"><span class="en">Employability &amp; coaching</span><span class="ar">التوظيف والكوتشينج</span></span>
-          <h4>ILO PROSPECTS · EFE · Mahara · ITIDA Gigs</h4>
-          <p class="who"><span class="en">ILO · Education For Employment · UAE · ITIDA</span><span class="ar">منظمة العمل الدولية · التعليم من أجل التوظيف · الإمارات · إيتيدا</span></p>
-          <p class="t"><span class="en">Facilitated job search clubs for youth, women and marginalized groups, plus freelancing training and one-to-one coaching for young people.</span><span class="ar">تيسير نوادي البحث عن وظيفة للشباب والنساء والفئات المهمّشة، وتدريب العمل الحر والكوتشينج الفردي للشباب.</span></p>
-          <p class="fig"><span class="en">~1,000 students · 120+ coaching hours</span><span class="ar">~1,000 طالب · +120 ساعة كوتشينج</span></p>
+          <h4>ILO PROSPECTS · Education For Employment</h4>
+          <p class="who"><span class="en">ILO · Education For Employment · 2024–2026</span><span class="ar">منظمة العمل الدولية · التعليم من أجل التوظيف · 2024–2026</span></p>
+          <p class="t"><span class="en">Certified job search club facilitator for youth, women and marginalized groups, with one-to-one coaching and evaluation of employability outcomes.</span><span class="ar">ميسّرة معتمدة لنوادي البحث عن وظيفة للشباب والنساء والفئات المهمّشة، مع كوتشينج فردي وتقييم لنتائج التوظيف.</span></p>
+          <p class="fig"><span class="en">4 EFE programs · 100 young people</span><span class="ar">4 برامج EFE · 100 شاب وشابة</span></p>
         </article>
         <article class="card">
           <span class="tag"><span class="en">Civic education</span><span class="ar">تربية مدنية</span></span>
@@ -1011,13 +1111,16 @@ html[lang="ar"] .hv-title,html[lang="ar"] .hv-school{direction:ltr;text-align:ri
         </div>
         <div class="quick-card">
           <div class="qi"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
-          <div><b><span class="en">Send a request by email, with an attachment</span><span class="ar">ابعت طلبك بالإيميل ومعاه ملف</span></b><span><span class="en">Projects, ToR, interviews or lives: fill in the form and attach any file (brief, ToR, CV…).</span><span class="ar">مشروع، شروط مرجعية، مقابلة أو لايف: املا النموذج وارفع أي ملف (برييف، ToR، سيرة ذاتية…).</span></span></div>
+          <div><b><span class="en">Send an email</span><span class="ar">ابعتلي إيميل</span></b><span><span class="en">Projects, interviews or questions: write to me directly from Gmail.</span><span class="ar">مشروع، مقابلة أو سؤال: اكتبلي مباشرة من Gmail.</span></span></div>
+          <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=asmaatareq91@gmail.com&amp;su=Hello%20Asmaa" class="btn btn-line" target="_blank" rel="noopener"><span class="en">Open Gmail</span><span class="ar">افتح Gmail</span></a>
+        </div>
+        <div class="quick-card">
+          <div class="qi"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21h-4z"/></svg></div>
+          <div><b><span class="en">Connect on LinkedIn</span><span class="ar">تواصل على لينكدإن</span></b><span><span class="en">Follow my work and send me a message.</span><span class="ar">تابع شغلي وابعتلي رسالة.</span></span></div>
+          <a href="https://www.linkedin.com/in/asmaatarek/" class="btn btn-line" target="_blank" rel="noopener"><span class="en">Open LinkedIn</span><span class="ar">افتح لينكدإن</span></a>
         </div>
       </div>
-      <div class="contact-links">
-        <a href="mailto:asmaatareq91@gmail.com"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><bdi>asmaatareq91@gmail.com</bdi></a>
-        <a href="https://www.linkedin.com/in/asmaatarek/" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21h-4z"/></svg>LinkedIn</a>
-      </div>
+      
     </div>
 
     <form class="fpanel mailform" id="bookForm" action="https://formsubmit.co/asmaatareq91@gmail.com" method="POST" enctype="multipart/form-data" target="_blank" novalidate>
@@ -1045,7 +1148,7 @@ html[lang="ar"] .hv-title,html[lang="ar"] .hv-school{direction:ltr;text-align:ri
       <p class="error full" hidden role="alert"></p>
       <button type="submit" class="btn btn-ink full"><span class="en">Send by email</span><span class="ar">ابعت بالإيميل</span></button>
       <p class="sent full" hidden role="status"><span class="en">Sent! Your request is on its way to Asmaa’s inbox. If a confirmation page opened, please complete it.</span><span class="ar">اتبعت! طلبك في الطريق لإيميل أسماء. لو اتفتحت صفحة تأكيد كمّلها.</span></p>
-      <p class="form-note full"><span class="en">Prefer your own email app? Write to</span><span class="ar">تحب تبعت من الإيميل بتاعك؟ ابعت على</span> <a href="mailto:asmaatareq91@gmail.com"><bdi>asmaatareq91@gmail.com</bdi></a></p>
+      
     </form>
   </div>
 </section>
@@ -1076,7 +1179,7 @@ html[lang="ar"] .hv-title,html[lang="ar"] .hv-school{direction:ltr;text-align:ri
       <div>
         <h3><span class="en">Contact</span><span class="ar">تواصل</span></h3>
         <ul>
-          <li><a href="mailto:asmaatareq91@gmail.com"><bdi>asmaatareq91@gmail.com</bdi></a></li>
+          <li><a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=asmaatareq91@gmail.com&amp;su=Hello%20Asmaa" target="_blank" rel="noopener"><span class="en">Email me</span><span class="ar">ابعتلي إيميل</span></a></li>
           <li><a href="https://www.linkedin.com/in/asmaatarek/" target="_blank" rel="noopener">LinkedIn</a></li>
           <li><span class="en">Cairo, Egypt</span><span class="ar">القاهرة، مصر</span></li>
         </ul>
@@ -1155,6 +1258,21 @@ document.querySelectorAll('[data-type]').forEach(el => el.addEventListener('clic
   if (plan) document.getElementById('fMsg').value = (L() === 'ar' ? 'بخصوص: ' : 'Regarding: ') + plan + '\n';
 }));
 
+// choosing a request type fills a starter message (only if the box is empty or still holds a starter text)
+const typeStarters = {
+  'Consulting / coaching': ['I would like to book: Coaching / consulting session\nTimes that suit me: ','عايز أحجز: جلسة كوتشينج / استشارة\nالمواعيد المناسبة ليا: '],
+  'Media interview': ['I would like to invite you for a media interview.\nOutlet / platform and topic: ','عايز أدعوكي لمقابلة إعلامية.\nالجهة / المنصة والموضوع: '],
+  'Joint live': ['I would like to host a joint live with you.\nPlatform, topic and proposed date: ','عايز نعمل لايف مشترك.\nالمنصة والموضوع والموعد المقترح: '],
+  'Training / learning design project': ['I would like to discuss a training / learning design project.\nOrganization, audience and goal: ','عايز أناقش مشروع تدريب / تصميم تعلّم.\nالجهة والفئة المستهدفة والهدف: ']
+};
+let lastStarter = '';
+bookForm.querySelectorAll('input[name="request_type"]').forEach(r => r.addEventListener('change', () => {
+  const box = document.getElementById('fMsg'), v = box.value.trim();
+  const isStarter = !v || Object.values(typeStarters).some(a => a.some(t => t.trim() === v)) || v === lastStarter.trim();
+  if (!isStarter) return;
+  const t = typeStarters[r.value]; lastStarter = t[L() === 'ar' ? 1 : 0]; box.value = lastStarter;
+}));
+
 // ----- email forms (FormSubmit) -----
 const MAX = 10 * 1024 * 1024;
 document.querySelectorAll('form.mailform').forEach(f => {
@@ -1177,6 +1295,14 @@ document.querySelectorAll('form.mailform').forEach(f => {
     err.hidden = true;
     setTimeout(() => { sent.hidden = false; f.reset(); }, 400);
   });
+});
+
+
+// highlight the request form after any button jumps to it
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href="#book"]'); if (!a) return;
+  const f = document.getElementById('bookForm'); if (!f) return;
+  setTimeout(() => { f.classList.remove('flash'); void f.offsetWidth; f.classList.add('flash'); setTimeout(() => f.classList.remove('flash'), 2100); }, 450);
 });
 
 // ----- lightbox -----
